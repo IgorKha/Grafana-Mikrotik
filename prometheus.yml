@@ -37,34 +37,10 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: node
-    # If prometheus-node-exporter is installed, grab stats about the local
-    # machine by default.
-    scrape_interval: 5s
-    scrape_timeout: 5s
-    static_configs:
-      - targets: ['localhost:9100']
-
-  - job_name: elk
-    # If prometheus-node-exporter is installed, grab stats about the local
-    # machine by default.
-    scrape_interval: 5s
-    scrape_timeout: 5s
-    static_configs:
-      - targets: ['192.168.5.25:9100']
-
-  - job_name: proxmox
-    # If prometheus-node-exporter is installed, grab stats about the local
-    # machine by default.
-    scrape_interval: 5s
-    scrape_timeout: 5s
-    static_configs:
-      - targets: ['192.168.5.10:9100']
-
   - job_name: Mikrotik
     static_configs:
       - targets:
-        - 192.168.5.1  # SNMP device.
+        - 0.0.0.0  # SNMP device IP.
     metrics_path: /snmp
     params:
       module: [mikrotik]
