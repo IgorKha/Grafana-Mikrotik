@@ -1,4 +1,6 @@
 # Grafana-Mikrotik
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=IgorKha.Grafana-Mikrotik)
+
 Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://github.com/prometheus/snmp_exporter)
 
 1. add into prometheus.yml
