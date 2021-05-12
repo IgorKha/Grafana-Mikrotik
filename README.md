@@ -1,5 +1,5 @@
 # Grafana-Mikrotik
-Grafana dashboard for Mikrotik/routerOS. Prometheus/SNMP
+Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://github.com/prometheus/snmp_exporter)
 
 1. add into prometheus.yml
 ```yml
@@ -19,7 +19,7 @@ Grafana dashboard for Mikrotik/routerOS. Prometheus/SNMP
         replacement: localhost:9116  # The SNMP exporter's real hostname:port.
 ```
 2. Configure Prometheus and run /snmp/snmp_exporter
-3. Add dashboard 
+3. Add dashboard https://grafana.com/grafana/dashboards/14420
 
 ![img1](https://github.com/IgorKha/Grafana-Mikrotik/blob/master/readme/1.png)
 ![img2](https://github.com/IgorKha/Grafana-Mikrotik/blob/master/readme/2.png)
