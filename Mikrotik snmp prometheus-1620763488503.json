@@ -67,7 +67,7 @@
   "gnetId": 11589,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1621172536322,
+  "iteration": 1621449121385,
   "links": [],
   "panels": [
     {
@@ -85,9 +85,129 @@
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "",
+      "datasource": null,
+      "description": "The current operational state of the device described by this row of the table. A value unknown(1) indicates that the current state of the device is unknown. running(2) indicates that the device is up and running and that no unusual error conditions are known. The warning(3) state indicates that agent has been informed of an unusual error condition by the operational software (e.g., a disk device driver) but that the device is still 'operational'. An example would be a high number of soft errors on a disk. A value of testing(4), indicates that the device is not available for use because it is in the testing state. The state of down(5) is used only when the agent has been informed that the device is not available for any use.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "text": "Unknown",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "text": "Running",
+              "to": "",
+              "type": 1,
+              "value": "2"
+            },
+            {
+              "from": "",
+              "id": 3,
+              "text": "Warning!",
+              "to": "",
+              "type": 1,
+              "value": "3"
+            },
+            {
+              "from": "",
+              "id": 4,
+              "text": "Testing",
+              "to": "",
+              "type": 1,
+              "value": "4"
+            },
+            {
+              "from": "",
+              "id": 5,
+              "text": "Down",
+              "to": "",
+              "type": 1,
+              "value": "5"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1
+              },
+              {
+                "color": "#299c46",
+                "value": 2
+              },
+              {
+                "color": "dark-red",
+                "value": 3
+              },
+              {
+                "color": "light-blue",
+                "value": 4
+              },
+              {
+                "color": "rgb(69, 69, 71)",
+                "value": 5
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 2,
+        "x": 0,
+        "y": 1
+      },
+      "id": 1220,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "hrDeviceStatus{instance='$instance'}",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Status device",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "description": "The number of errors detected on this device",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -100,33 +220,33 @@
               {
                 "color": "#299c46",
                 "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 1
               }
             ]
-          },
-          "unit": "dateTimeAsLocal"
+          }
         },
         "overrides": []
       },
       "gridPos": {
         "h": 2,
-        "w": 4,
-        "x": 0,
+        "w": 2,
+        "x": 2,
         "y": 1
       },
-      "id": 1325,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
+      "id": 1614,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "center",
+        "graphMode": "none",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^Time$/",
+          "fields": "",
           "values": false
         },
         "text": {},
@@ -136,7 +256,8 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "time()-(hrSystemDate{instance='$instance'})",
+          "expr": "hrDeviceErrors{instance='$instance'}",
+          "hide": false,
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -145,7 +266,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "RouterOS date",
+      "title": "Device Errors",
       "type": "stat"
     },
     {
@@ -156,6 +277,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 0,
           "mappings": [],
           "max": 80,
           "min": 0,
@@ -207,7 +329,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "mtxrHlTemperature{instance='$instance'}/10",
+          "expr": "mtxrHlProcessorTemperature{instance='$instance'}/10 or mtxrHlTemperature{instance='$instance'}/10",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -228,6 +350,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 0,
           "mappings": [],
           "max": 100,
           "min": 0,
@@ -462,7 +585,6 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:297",
           "alias": "Voltage",
           "yaxis": 1
         }
@@ -499,7 +621,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:75",
           "format": "volt",
           "label": null,
           "logBase": 1,
@@ -508,7 +629,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:76",
           "format": "volt",
           "label": null,
           "logBase": 1,
@@ -525,6 +645,70 @@
     {
       "cacheTimeout": null,
       "datasource": "${DS_PROMETHEUS}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              }
+            ]
+          },
+          "unit": "dateTimeAsLocal"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 3
+      },
+      "id": 1325,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Time$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "time()-(hrSystemDate{instance='$instance'})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "RouterOS date",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -533,7 +717,6 @@
           "decimals": 1,
           "mappings": [
             {
-              "$$hashKey": "object:1263",
               "from": "sysUpTime",
               "id": 0,
               "text": "",
@@ -575,7 +758,7 @@
         "h": 2,
         "w": 4,
         "x": 0,
-        "y": 3
+        "y": 5
       },
       "id": 476,
       "interval": null,
@@ -609,66 +792,6 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Uptime",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "super-light-yellow",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 5
-      },
-      "id": 1264,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "name"
-      },
-      "pluginVersion": "7.5.5",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "sysIdentity{instance='$instance'}",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{sysIdentity}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "System identity",
       "type": "stat"
     },
     {
@@ -742,7 +865,6 @@
           },
           "mappings": [
             {
-              "$$hashKey": "object:1263",
               "from": "sysUpTime",
               "id": 0,
               "text": "",
@@ -842,7 +964,7 @@
         "x": 0,
         "y": 7
       },
-      "id": 1248,
+      "id": 1264,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -852,7 +974,7 @@
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^hAP ac$/",
+          "fields": "",
           "values": false
         },
         "text": {},
@@ -862,17 +984,17 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "mtxrBoardName{instance='$instance'}",
+          "expr": "sysIdentity{instance='$instance'}",
           "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": "{{mtxrBoardName}}",
+          "legendFormat": "{{sysIdentity}}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Board Name",
+      "title": "System identity",
       "type": "stat"
     },
     {
@@ -883,9 +1005,9 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 0,
           "mappings": [
             {
-              "$$hashKey": "object:1768",
               "id": 0,
               "op": "=",
               "text": "N/A",
@@ -963,9 +1085,9 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 0,
           "mappings": [
             {
-              "$$hashKey": "object:251",
               "id": 0,
               "op": "=",
               "text": "N/A",
@@ -1087,12 +1209,10 @@
       "repeatDirection": "h",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:386",
           "alias": "CPU Temp °C",
           "yaxis": 2
         },
         {
-          "$$hashKey": "object:393",
           "alias": "CPU Temp",
           "yaxis": 2
         }
@@ -1155,7 +1275,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:289",
           "format": "percent",
           "label": null,
           "logBase": 1,
@@ -1164,7 +1283,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:290",
           "format": "celsius",
           "label": "",
           "logBase": 1,
@@ -1267,7 +1385,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:289",
           "format": "MTU",
           "label": "Maximum Transmission Unit",
           "logBase": 1,
@@ -1276,7 +1393,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:290",
           "format": "percent",
           "label": "yu",
           "logBase": 1,
@@ -1316,6 +1432,66 @@
         "w": 4,
         "x": 0,
         "y": 9
+      },
+      "id": 1248,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^hAP ac$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "mtxrBoardName{instance='$instance'}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{mtxrBoardName}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Board Name",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-yellow",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 11
       },
       "id": 1241,
       "options": {
@@ -1375,7 +1551,7 @@
         "h": 2,
         "w": 4,
         "x": 0,
-        "y": 11
+        "y": 13
       },
       "id": 1311,
       "options": {
@@ -1412,66 +1588,7 @@
     },
     {
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#299c46",
-                "value": null
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 13
-      },
-      "id": 1220,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "text": {},
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.5.5",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "mtxrDHCPLeaseCount{instance='$instance'}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "dhcp leases",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "DHCP Leases",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "description": "",
+      "description": "Status link/states: The current operational state of the interface",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1576,7 +1693,11 @@
               },
               {
                 "id": "custom.width",
-                "value": 129
+                "value": 130
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
               }
             ]
           },
@@ -1620,7 +1741,7 @@
               },
               {
                 "id": "custom.width",
-                "value": 128
+                "value": 119
               }
             ]
           },
@@ -1708,7 +1829,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 137
+                "value": 118
               },
               {
                 "id": "thresholds",
@@ -1739,12 +1860,65 @@
                 "value": 88
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MTU"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 118
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type of interface"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 140
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "from": "",
+                    "id": 1,
+                    "text": "Wireless",
+                    "to": "",
+                    "type": 1,
+                    "value": "ieee80211"
+                  },
+                  {
+                    "from": "",
+                    "id": 2,
+                    "text": "Physical",
+                    "to": "",
+                    "type": 1,
+                    "value": "ethernetCsmacd"
+                  }
+                ]
+              },
+              {
+                "id": "custom.filterable",
+                "value": true
+              }
+            ]
           }
         ]
       },
       "gridPos": {
         "h": 12,
-        "w": 18,
+        "w": 20,
         "x": 0,
         "y": 15
       },
@@ -1819,6 +1993,46 @@
           "interval": "",
           "legendFormat": "",
           "refId": "F"
+        },
+        {
+          "exemplar": true,
+          "expr": "ifMtu{instance='$instance'}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "G"
+        },
+        {
+          "exemplar": true,
+          "expr": "ifType_info{instance='$instance'}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "H"
+        },
+        {
+          "exemplar": true,
+          "expr": "mtxrPOEInterfaceIndex{instance='$instance'}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "I"
+        },
+        {
+          "exemplar": true,
+          "expr": "ifAlias{instance='$instance'}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "J"
         }
       ],
       "timeFrom": null,
@@ -1841,6 +2055,8 @@
             "excludeByName": {
               "Time": true,
               "Value #A": true,
+              "Value #H": true,
+              "Value #J": true,
               "__name__": true,
               "ifIndex": false,
               "instance": true,
@@ -1848,32 +2064,43 @@
               "mtxrInterfaceStatsIndex": true
             },
             "indexByName": {
-              "Time": 8,
-              "Value #A": 12,
-              "Value #B": 2,
-              "Value #C": 6,
-              "Value #D": 7,
-              "Value #E": 5,
-              "Value #F": 3,
-              "__name__": 9,
+              "Time": 12,
+              "Value #A": 16,
+              "Value #B": 3,
+              "Value #C": 8,
+              "Value #D": 9,
+              "Value #E": 6,
+              "Value #F": 4,
+              "Value #G": 7,
+              "Value #H": 11,
+              "Value #J": 18,
+              "__name__": 13,
+              "ifAlias": 10,
               "ifIndex": 0,
-              "ifName": 1,
-              "ifPhysAddress": 4,
-              "instance": 10,
-              "job": 11,
-              "mtxrInterfaceStatsIndex": 13
+              "ifName": 2,
+              "ifPhysAddress": 5,
+              "ifType": 1,
+              "instance": 14,
+              "job": 15,
+              "mtxrInterfaceStatsIndex": 17
             },
             "renameByName": {
+              "Time": "",
               "Value #A": "",
               "Value #B": "Status link/states",
               "Value #C": "RX Sum",
               "Value #D": "TX Sum",
               "Value #E": "Rate",
               "Value #F": "Link down count",
+              "Value #G": "MTU",
+              "Value #H": "",
+              "Value #J": "",
               "__name__": "",
+              "ifAlias": "Comment",
               "ifIndex": "Int. index",
               "ifName": "Name",
               "ifPhysAddress": "MAC",
+              "ifType": "Type of interface",
               "instance": "",
               "mtxrInterfaceStatsIndex": ""
             }
@@ -1951,8 +2178,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 3,
-        "x": 18,
+        "w": 2,
+        "x": 20,
         "y": 15
       },
       "id": 1276,
@@ -1991,6 +2218,7 @@
     },
     {
       "datasource": null,
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2006,17 +2234,17 @@
               }
             ]
           },
-          "unit": "volt"
+          "unit": "watt"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 6,
-        "w": 3,
-        "x": 21,
+        "w": 2,
+        "x": 22,
         "y": 15
       },
-      "id": 1278,
+      "id": 1279,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -2036,18 +2264,18 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "mtxrPOEVoltage{instance='$instance'}",
+          "expr": "mtxrPOEPower{instance='$instance'}",
           "format": "time_series",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
-          "legendFormat": "POE Voltage",
+          "legendFormat": "POE Power",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "POE Voltage",
+      "title": "POE Power",
       "type": "stat"
     },
     {
@@ -2073,8 +2301,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 3,
-        "x": 18,
+        "w": 2,
+        "x": 20,
         "y": 21
       },
       "id": 1277,
@@ -2100,7 +2328,7 @@
           "expr": "mtxrPOECurrent{instance='$instance'}",
           "format": "time_series",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "POE Current",
           "refId": "A"
@@ -2113,7 +2341,6 @@
     },
     {
       "datasource": null,
-      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2129,17 +2356,17 @@
               }
             ]
           },
-          "unit": "watt"
+          "unit": "volt"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 6,
-        "w": 3,
-        "x": 21,
+        "w": 2,
+        "x": 22,
         "y": 21
       },
-      "id": 1279,
+      "id": 1278,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -2159,309 +2386,19 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "mtxrPOEPower{instance='$instance'}",
+          "expr": "mtxrPOEVoltage{instance='$instance'}",
           "format": "time_series",
           "hide": false,
-          "instant": false,
+          "instant": true,
           "interval": "",
-          "legendFormat": "POE Power",
+          "legendFormat": "POE Voltage",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "POE Power",
+      "title": "POE Voltage",
       "type": "stat"
-    },
-    {
-      "aliasColors": {
-        "CCQ - 1": "#ff2e63",
-        "CCQ - 2": "#08d9d6",
-        "CCQ - Tilda": "#ff2e63",
-        "Noise - 1": "#ff2e63",
-        "Noise - 2": "#08d9d6",
-        "Noise - Tilda": "light-blue",
-        "TX CCQ - Tilda": "#ff2e63"
-      },
-      "bars": false,
-      "cacheTimeout": null,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 0,
-        "y": 27
-      },
-      "hiddenSeries": false,
-      "id": 1270,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideZero": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "maxPerRow": 2,
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.5.5",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatDirection": "h",
-      "seriesOverrides": [
-        {
-          "alias": "2",
-          "yaxis": 1
-        },
-        {
-          "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"2\"}",
-          "yaxis": 2
-        },
-        {
-          "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"11\"}",
-          "yaxis": 2
-        },
-        {
-          "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"1\"}",
-          "yaxis": 2
-        },
-        {
-          "alias": "Noise 1",
-          "yaxis": 2
-        },
-        {
-          "alias": "Noise 11",
-          "yaxis": 2
-        },
-        {
-          "alias": "Noise 2",
-          "yaxis": 2
-        },
-        {
-          "alias": "Noise - 2",
-          "yaxis": 2
-        },
-        {
-          "alias": "Noise - 11",
-          "yaxis": 2
-        },
-        {
-          "alias": "Noise - 1",
-          "yaxis": 2
-        },
-        {
-          "alias": "Noise - Tilda",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "(mtxrWlApOverallTxCCQ{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "TX CCQ - {{mtxrWlApSsid}}",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "(mtxrWlApNoiseFloor{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "Noise - {{mtxrWlApSsid}}",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Wi-Fi Overall Tx CCQ & Noise",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:331",
-          "decimals": null,
-          "format": "percent",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:332",
-          "decimals": null,
-          "format": "dBm",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": true,
-        "alignLevel": 0
-      }
-    },
-    {
-      "aliasColors": {
-        "1": "#ff2e63",
-        "2": "#08d9d6",
-        "DHCP Leases count": "dark-green",
-        "Tilda": "#ff2e63"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "decimals": 0,
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 12,
-        "y": 27
-      },
-      "hiddenSeries": false,
-      "id": 1261,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideZero": true,
-        "max": true,
-        "min": true,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.5.5",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "(mtxrWlApAuthClientCount{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{mtxrWlApSsid}}",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "mtxrDHCPLeaseCount{instance='$instance'}",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "DHCP Leases",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Wi-Fi Client count",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:75",
-          "decimals": 0,
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:76",
-          "decimals": 0,
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
     },
     {
       "aliasColors": {
@@ -2483,7 +2420,7 @@
         "h": 6,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 27
       },
       "hiddenSeries": false,
       "id": 1239,
@@ -2556,7 +2493,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:237",
           "decimals": null,
           "format": "bps",
           "label": "",
@@ -2566,7 +2502,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:238",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2598,7 +2533,7 @@
         "h": 6,
         "w": 12,
         "x": 0,
-        "y": 39
+        "y": 33
       },
       "hiddenSeries": false,
       "id": 1268,
@@ -2630,12 +2565,10 @@
       "repeatDirection": "h",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:2649",
           "alias": "PCQ Out - http_priority",
           "yaxis": 2
         },
         {
-          "$$hashKey": "object:2650",
           "alias": "PCQ In - http_priority",
           "yaxis": 2
         },
@@ -2709,7 +2642,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:331",
           "format": "Bps",
           "label": null,
           "logBase": 1,
@@ -2718,7 +2650,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:332",
           "format": "pps",
           "label": null,
           "logBase": 1,
@@ -2752,7 +2683,7 @@
         "h": 6,
         "w": 12,
         "x": 12,
-        "y": 39
+        "y": 33
       },
       "hiddenSeries": false,
       "id": 1510,
@@ -2784,12 +2715,10 @@
       "repeatDirection": "h",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:2649",
           "alias": "PCQ Out - http_priority",
           "yaxis": 2
         },
         {
-          "$$hashKey": "object:2650",
           "alias": "PCQ In - http_priority",
           "yaxis": 2
         },
@@ -2910,7 +2839,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:331",
           "format": "binBps",
           "label": "",
           "logBase": 1,
@@ -2919,7 +2847,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:332",
           "format": "pps",
           "label": null,
           "logBase": 1,
@@ -2940,7 +2867,851 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 45
+        "y": 39
+      },
+      "id": 1642,
+      "panels": [
+        {
+          "aliasColors": {
+            "CCQ - 1": "#ff2e63",
+            "CCQ - 2": "#08d9d6",
+            "CCQ - Tilda": "#ff2e63",
+            "Noise - 1": "#ff2e63",
+            "Noise - 2": "#08d9d6",
+            "Noise - Tilda": "light-blue",
+            "Noise - Tilda_5": "dark-purple",
+            "TX CCQ - Tilda": "#ff2e63"
+          },
+          "bars": false,
+          "cacheTimeout": null,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 0,
+            "y": 40
+          },
+          "hiddenSeries": false,
+          "id": 1270,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.5.5",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatDirection": "h",
+          "seriesOverrides": [
+            {
+              "alias": "2",
+              "yaxis": 1
+            },
+            {
+              "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"2\"}",
+              "yaxis": 2
+            },
+            {
+              "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"11\"}",
+              "yaxis": 2
+            },
+            {
+              "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"1\"}",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise 1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise 11",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise 2",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - 2",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - 11",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - 1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - Tilda",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - Tilda_5",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "(mtxrWlApOverallTxCCQ{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "TX CCQ - {{mtxrWlApSsid}}",
+              "refId": "A"
+            },
+            {
+              "exemplar": true,
+              "expr": "(mtxrWlApNoiseFloor{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
+              "format": "time_series",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Noise - {{mtxrWlApSsid}}",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Wi-Fi Overall Tx CCQ & Noise",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "percent",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": null,
+              "format": "dBm",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": 0
+          }
+        },
+        {
+          "aliasColors": {
+            "1": "#ff2e63",
+            "2": "#08d9d6",
+            "DHCP Leases count": "dark-green",
+            "Tilda": "#ff2e63"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "decimals": 0,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 8,
+            "y": 40
+          },
+          "hiddenSeries": false,
+          "id": 1261,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideZero": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.5.5",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "(mtxrWlApAuthClientCount{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "{{mtxrWlApSsid}}",
+              "refId": "A"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrDHCPLeaseCount{instance='$instance'}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "DHCP Leases",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Wi-Fi Client count",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "1": "#ff2e63",
+            "2": "#08d9d6",
+            "DHCP Leases count": "dark-green",
+            "Tilda": "#ff2e63"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "decimals": 0,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "unit": "MHz"
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 16,
+            "y": 40
+          },
+          "hiddenSeries": false,
+          "id": 1613,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "hideZero": true,
+            "max": false,
+            "min": false,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.5.5",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWlApFreq{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'}",
+              "hide": false,
+              "instant": false,
+              "interval": "",
+              "legendFormat": "{{mtxrWlApSsid}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Wi-Fi frequency",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "MHz",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "CCQ - 1": "#ff2e63",
+            "CCQ - 2": "#08d9d6",
+            "CCQ - Tilda": "#ff2e63",
+            "Noise - 1": "#ff2e63",
+            "Noise - 2": "#08d9d6",
+            "Noise - Tilda": "light-blue",
+            "Noise - Tilda_5": "dark-purple",
+            "TX CCQ - Tilda": "#ff2e63"
+          },
+          "bars": false,
+          "cacheTimeout": null,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Signal Strength: signal strength in dBm (if first ppp-client modem supports)\n\nModem Signal: signal EC/IO in dB (if first ppp-client modem supports)",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 15,
+            "x": 0,
+            "y": 49
+          },
+          "hiddenSeries": false,
+          "id": 1640,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideZero": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.5.5",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatDirection": "h",
+          "seriesOverrides": [
+            {
+              "alias": "2",
+              "yaxis": 1
+            },
+            {
+              "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"2\"}",
+              "yaxis": 2
+            },
+            {
+              "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"11\"}",
+              "yaxis": 2
+            },
+            {
+              "alias": "mtxrWlApNoiseFloor{instance=\"192.168.5.1\", job=\"Mikrotik\", mtxrWlApIndex=\"1\"}",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise 1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise 11",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise 2",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - 2",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - 11",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - 1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - Tilda",
+              "yaxis": 2
+            },
+            {
+              "alias": "Noise - Tilda_5",
+              "yaxis": 2
+            },
+            {
+              "alias": "Modem Signal",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWirelessModemSignalStrength{instance='$instance'}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Signal Strength",
+              "refId": "A"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrWirelessModemSignalECIO{instance='$instance'}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Modem Signal",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Modem",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "dBm",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": null,
+              "format": "dB",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": 0
+          }
+        },
+        {
+          "datasource": null,
+          "description": "Wireless registration table. It is indexed by remote mac-address and local interface index.\n\nMeasured in dB, if value does not exist it is indicated with 0",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": null,
+                "filterable": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "mac address"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Interface"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 90
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Signal-to-Noise"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 200
+                  },
+                  {
+                    "id": "unit",
+                    "value": "dB"
+                  },
+                  {
+                    "id": "custom.displayMode",
+                    "value": "lcd-gauge"
+                  },
+                  {
+                    "id": "min",
+                    "value": 5
+                  },
+                  {
+                    "id": "max",
+                    "value": 50
+                  },
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "continuous-RdYlGr"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Strength"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 200
+                  },
+                  {
+                    "id": "unit",
+                    "value": "dBm"
+                  },
+                  {
+                    "id": "custom.displayMode",
+                    "value": "lcd-gauge"
+                  },
+                  {
+                    "id": "min",
+                    "value": -85
+                  },
+                  {
+                    "id": "max",
+                    "value": -30
+                  },
+                  {
+                    "id": "color",
+                    "value": {
+                      "mode": "continuous-RdYlGr"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byType",
+                  "options": "number"
+                },
+                "properties": [
+                  {
+                    "id": "custom.align",
+                    "value": "center"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byType",
+                  "options": "string"
+                },
+                "properties": [
+                  {
+                    "id": "custom.align",
+                    "value": "center"
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 9,
+            "x": 15,
+            "y": 49
+          },
+          "id": 1643,
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Signal-to-Noise - more details",
+              "url": "http://www.wireless-nets.com/resources/tutorials/define_SNR_values.html"
+            }
+          ],
+          "options": {
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "7.5.5",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabAddr{instance='$instance'}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabSignalToNoise{instance='$instance'}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "B"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabStrength{instance='$instance'}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "C"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Wi-Fi Clients",
+          "transformations": [
+            {
+              "id": "seriesToColumns",
+              "options": {
+                "byField": "mtxrWlRtabAddr"
+              }
+            },
+            {
+              "id": "merge",
+              "options": {}
+            },
+            {
+              "id": "sortBy",
+              "options": {
+                "fields": {},
+                "sort": [
+                  {
+                    "desc": false,
+                    "field": "mtxrWlRtabIface"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "Time": true,
+                  "Value #A": true,
+                  "__name__": true,
+                  "instance": true,
+                  "job": true
+                },
+                "indexByName": {
+                  "Time": 4,
+                  "Value #A": 8,
+                  "Value #B": 3,
+                  "Value #C": 2,
+                  "__name__": 5,
+                  "instance": 6,
+                  "job": 7,
+                  "mtxrWlRtabAddr": 0,
+                  "mtxrWlRtabIface": 1
+                },
+                "renameByName": {
+                  "Time": "",
+                  "Value #A": "",
+                  "Value #B": "Signal-to-Noise",
+                  "Value #C": "Strength",
+                  "job": "",
+                  "mtxrWlRtabAddr": "Mac address",
+                  "mtxrWlRtabIface": "Interface"
+                }
+              }
+            }
+          ],
+          "type": "table"
+        }
+      ],
+      "title": "Wireless",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 40
       },
       "id": 1281,
       "panels": [
@@ -2962,7 +3733,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 52
+            "y": 48
           },
           "hiddenSeries": false,
           "id": 1282,
@@ -3002,12 +3773,10 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:114",
               "alias": "Dropped Out - http_priority",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:115",
               "alias": "Dropped In - http_priority",
               "yaxis": 2
             },
@@ -3102,7 +3871,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:331",
               "format": "Bps",
               "label": null,
               "logBase": 1,
@@ -3111,7 +3879,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:332",
               "format": "pps",
               "label": null,
               "logBase": 1,
@@ -3143,15 +3910,15 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 52
+            "y": 48
           },
           "hiddenSeries": false,
-          "id": 1565,
+          "id": 1627,
           "legend": {
             "alignAsTable": true,
             "avg": true,
             "current": true,
-            "hideZero": false,
+            "hideZero": true,
             "max": true,
             "min": false,
             "rightSide": true,
@@ -3173,7 +3940,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628895,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1282,
           "scopedVars": {
             "queuesimple_name": {
@@ -3184,12 +3951,10 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:114",
               "alias": "Dropped Out - http_priority",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:115",
               "alias": "Dropped In - http_priority",
               "yaxis": 2
             },
@@ -3284,7 +4049,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:331",
               "format": "Bps",
               "label": null,
               "logBase": 1,
@@ -3293,7 +4057,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:332",
               "format": "pps",
               "label": null,
               "logBase": 1,
@@ -3318,7 +4081,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 46
+        "y": 41
       },
       "id": 1548,
       "panels": [
@@ -3342,7 +4105,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 53
+            "y": 49
           },
           "hiddenSeries": false,
           "id": 1549,
@@ -3382,12 +4145,10 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:2649",
               "alias": "PCQ Out - http_priority",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:2650",
               "alias": "PCQ In - http_priority",
               "yaxis": 2
             },
@@ -3495,7 +4256,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:331",
               "format": "binBps",
               "label": "",
               "logBase": 1,
@@ -3504,598 +4264,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:332",
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "Packets - tree_2": "dark-green"
-          },
-          "bars": false,
-          "cacheTimeout": null,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Showing values > 0",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 6,
-            "w": 12,
-            "x": 12,
-            "y": 53
-          },
-          "hiddenSeries": false,
-          "id": 1566,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideZero": true,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
-          "percentage": false,
-          "pluginVersion": "7.5.5",
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeatDirection": "h",
-          "repeatIteration": 1621172536321,
-          "repeatPanelId": 1549,
-          "scopedVars": {
-            "queuetree_name": {
-              "selected": false,
-              "text": "queue2",
-              "value": "queue2"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "$$hashKey": "object:2649",
-              "alias": "PCQ Out - http_priority",
-              "yaxis": 2
-            },
-            {
-              "$$hashKey": "object:2650",
-              "alias": "PCQ In - http_priority",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ In - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "Packets - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ - tree_2",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped - tree_2",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped",
-              "yaxis": 2
-            },
-            {
-              "alias": "Packets",
-              "yaxis": 2
-            },
-            {
-              "alias": "p",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreeHCBytes{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})*8",
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "Bytes",
-              "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreePCQQueues{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "PCQ",
-              "refId": "B"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreeDropped{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "Dropped",
-              "refId": "C"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreePackets{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "legendFormat": "Packets",
-              "refId": "E"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Tree Queue $queuetree_name / $queuetree_parent / $queuetree_flow",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "$$hashKey": "object:331",
-              "format": "binBps",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "$$hashKey": "object:332",
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "Packets - tree_2": "dark-green"
-          },
-          "bars": false,
-          "cacheTimeout": null,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Showing values > 0",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 6,
-            "w": 12,
-            "x": 0,
-            "y": 59
-          },
-          "hiddenSeries": false,
-          "id": 1567,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideZero": true,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
-          "percentage": false,
-          "pluginVersion": "7.5.5",
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeatDirection": "h",
-          "repeatIteration": 1621172536321,
-          "repeatPanelId": 1549,
-          "scopedVars": {
-            "queuetree_name": {
-              "selected": false,
-              "text": "queue3",
-              "value": "queue3"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "$$hashKey": "object:2649",
-              "alias": "PCQ Out - http_priority",
-              "yaxis": 2
-            },
-            {
-              "$$hashKey": "object:2650",
-              "alias": "PCQ In - http_priority",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ In - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "Packets - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ - tree_2",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped - tree_2",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped",
-              "yaxis": 2
-            },
-            {
-              "alias": "Packets",
-              "yaxis": 2
-            },
-            {
-              "alias": "p",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreeHCBytes{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})*8",
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "Bytes",
-              "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreePCQQueues{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "PCQ",
-              "refId": "B"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreeDropped{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "Dropped",
-              "refId": "C"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreePackets{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "legendFormat": "Packets",
-              "refId": "E"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Tree Queue $queuetree_name / $queuetree_parent / $queuetree_flow",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "$$hashKey": "object:331",
-              "format": "binBps",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "$$hashKey": "object:332",
-              "format": "pps",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {
-            "Packets - tree_2": "dark-green"
-          },
-          "bars": false,
-          "cacheTimeout": null,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Showing values > 0",
-          "fieldConfig": {
-            "defaults": {},
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 0,
-          "gridPos": {
-            "h": 6,
-            "w": 12,
-            "x": 12,
-            "y": 59
-          },
-          "hiddenSeries": false,
-          "id": 1568,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "hideZero": true,
-            "max": true,
-            "min": false,
-            "rightSide": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null as zero",
-          "options": {
-            "alertThreshold": true
-          },
-          "percentage": false,
-          "pluginVersion": "7.5.5",
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeatDirection": "h",
-          "repeatIteration": 1621172536321,
-          "repeatPanelId": 1549,
-          "scopedVars": {
-            "queuetree_name": {
-              "selected": false,
-              "text": "queue4",
-              "value": "queue4"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "$$hashKey": "object:2649",
-              "alias": "PCQ Out - http_priority",
-              "yaxis": 2
-            },
-            {
-              "$$hashKey": "object:2650",
-              "alias": "PCQ In - http_priority",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ In - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "Packets - test_tree",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ - tree_2",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped - tree_2",
-              "yaxis": 2
-            },
-            {
-              "alias": "PCQ",
-              "yaxis": 2
-            },
-            {
-              "alias": "Dropped",
-              "yaxis": 2
-            },
-            {
-              "alias": "Packets",
-              "yaxis": 2
-            },
-            {
-              "alias": "p",
-              "yaxis": 2
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreeHCBytes{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})*8",
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "Bytes",
-              "refId": "A"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreePCQQueues{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "PCQ",
-              "refId": "B"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreeDropped{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "intervalFactor": 1,
-              "legendFormat": "Dropped",
-              "refId": "C"
-            },
-            {
-              "exemplar": true,
-              "expr": "(irate(mtxrQueueTreePackets{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
-              "hide": false,
-              "instant": false,
-              "interval": "",
-              "legendFormat": "Packets",
-              "refId": "E"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Tree Queue $queuetree_name / $queuetree_parent / $queuetree_flow",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "$$hashKey": "object:331",
-              "format": "binBps",
-              "label": "",
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "$$hashKey": "object:332",
               "format": "pps",
               "label": null,
               "logBase": 1,
@@ -4120,7 +4288,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 42
       },
       "id": 1285,
       "panels": [
@@ -4142,9 +4310,9 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
+            "w": 8,
             "x": 0,
-            "y": 54
+            "y": 50
           },
           "hiddenSeries": false,
           "id": 1286,
@@ -4163,7 +4331,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -4184,27 +4352,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -4285,7 +4448,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -4295,7 +4457,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -4327,12 +4488,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 54
+            "w": 8,
+            "x": 8,
+            "y": 50
           },
           "hiddenSeries": false,
-          "id": 1554,
+          "id": 1615,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4348,7 +4509,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -4359,7 +4520,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -4370,27 +4531,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -4471,7 +4627,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -4481,7 +4636,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -4513,12 +4667,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 61
+            "w": 8,
+            "x": 16,
+            "y": 50
           },
           "hiddenSeries": false,
-          "id": 1555,
+          "id": 1616,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4534,7 +4688,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -4545,7 +4699,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -4556,27 +4710,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -4657,7 +4806,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -4667,7 +4815,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -4699,12 +4846,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 61
+            "w": 8,
+            "x": 0,
+            "y": 57
           },
           "hiddenSeries": false,
-          "id": 1556,
+          "id": 1617,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4720,7 +4867,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -4731,7 +4878,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -4742,27 +4889,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -4843,7 +4985,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -4853,7 +4994,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -4885,12 +5025,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 68
+            "w": 8,
+            "x": 8,
+            "y": 57
           },
           "hiddenSeries": false,
-          "id": 1557,
+          "id": 1618,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -4906,7 +5046,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -4917,7 +5057,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -4928,27 +5068,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -5029,7 +5164,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -5039,7 +5173,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -5071,12 +5204,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 68
+            "w": 8,
+            "x": 16,
+            "y": 57
           },
           "hiddenSeries": false,
-          "id": 1558,
+          "id": 1619,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5092,7 +5225,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -5103,7 +5236,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -5114,27 +5247,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -5215,7 +5343,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -5225,7 +5352,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -5257,12 +5383,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
+            "w": 8,
             "x": 0,
-            "y": 75
+            "y": 64
           },
           "hiddenSeries": false,
-          "id": 1559,
+          "id": 1620,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5278,7 +5404,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -5289,7 +5415,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -5300,27 +5426,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -5401,7 +5522,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -5411,7 +5531,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -5443,12 +5562,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 75
+            "w": 8,
+            "x": 8,
+            "y": 64
           },
           "hiddenSeries": false,
-          "id": 1560,
+          "id": 1621,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5464,7 +5583,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -5475,7 +5594,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -5486,27 +5605,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -5587,7 +5701,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -5597,7 +5710,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -5629,12 +5741,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 82
+            "w": 8,
+            "x": 16,
+            "y": 64
           },
           "hiddenSeries": false,
-          "id": 1561,
+          "id": 1622,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5650,7 +5762,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -5661,7 +5773,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -5672,27 +5784,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -5773,7 +5880,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -5783,7 +5889,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -5815,12 +5920,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 82
+            "w": 8,
+            "x": 0,
+            "y": 71
           },
           "hiddenSeries": false,
-          "id": 1562,
+          "id": 1623,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -5836,7 +5941,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -5847,7 +5952,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -5858,27 +5963,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -5959,7 +6059,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -5969,7 +6068,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -6001,12 +6099,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 0,
-            "y": 89
+            "w": 8,
+            "x": 8,
+            "y": 71
           },
           "hiddenSeries": false,
-          "id": 1563,
+          "id": 1624,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6022,7 +6120,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -6033,7 +6131,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -6044,27 +6142,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -6145,7 +6238,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -6155,7 +6247,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -6187,12 +6278,12 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 7,
-            "w": 12,
-            "x": 12,
-            "y": 89
+            "w": 8,
+            "x": 16,
+            "y": 71
           },
           "hiddenSeries": false,
-          "id": 1564,
+          "id": 1625,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6208,7 +6299,7 @@
           },
           "lines": true,
           "linewidth": 1,
-          "maxPerRow": 2,
+          "maxPerRow": 3,
           "nullPointMode": "connected",
           "options": {
             "alertThreshold": true
@@ -6219,7 +6310,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621165628893,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1286,
           "scopedVars": {
             "Interface": {
@@ -6230,27 +6321,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -6331,7 +6417,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "bps",
               "label": "",
@@ -6341,7 +6426,185 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
+              "format": "pps",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "In - wlan1": "#ff2e63"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "decimals": null,
+          "description": "",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 8,
+            "x": 0,
+            "y": 78
+          },
+          "hiddenSeries": false,
+          "id": 1626,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "maxPerRow": 3,
+          "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.5.5",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatDirection": "h",
+          "repeatIteration": 1621424198974,
+          "repeatPanelId": 1286,
+          "scopedVars": {
+            "Interface": {
+              "selected": false,
+              "text": "vlan5_name",
+              "value": "vlan5_name"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "In - ether1",
+              "yaxis": 1
+            },
+            {
+              "alias": "In Unicast - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out Unicast - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out Discard - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Discard - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Unicast -",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Unicast -  ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Errors - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out Errors - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Unknown Protos - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out queue length - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Multicast - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out Multicast - ether1",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "irate(ifHCInOctets{ifName=~'$Interface',instance='$instance'}[$__rate_interval])*8",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "In",
+              "refId": "A"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifHCOutOctets{ifName=~'$Interface',instance='$instance'}[$__rate_interval])*8",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Out",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Traffic \"$Interface\"",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "bps",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -6366,7 +6629,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 48
+        "y": 43
       },
       "id": 1338,
       "panels": [
@@ -6390,7 +6653,7 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 60
+            "y": 51
           },
           "hiddenSeries": false,
           "id": 1339,
@@ -6430,27 +6693,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -6608,7 +6866,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -6618,7 +6875,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -6652,10 +6908,10 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 60
+            "y": 51
           },
           "hiddenSeries": false,
-          "id": 1535,
+          "id": 1628,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6682,7 +6938,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -6693,27 +6949,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -6871,7 +7122,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -6881,7 +7131,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -6915,10 +7164,10 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 67
+            "y": 58
           },
           "hiddenSeries": false,
-          "id": 1536,
+          "id": 1629,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -6945,7 +7194,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -6956,27 +7205,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -7134,7 +7378,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -7144,7 +7387,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -7178,10 +7420,10 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 67
+            "y": 58
           },
           "hiddenSeries": false,
-          "id": 1537,
+          "id": 1630,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7208,7 +7450,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -7219,27 +7461,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -7397,7 +7634,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -7407,7 +7643,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -7441,10 +7676,10 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 74
+            "y": 65
           },
           "hiddenSeries": false,
-          "id": 1538,
+          "id": 1631,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7471,7 +7706,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -7482,27 +7717,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -7660,7 +7890,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -7670,7 +7899,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -7704,10 +7932,10 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 74
+            "y": 65
           },
           "hiddenSeries": false,
-          "id": 1539,
+          "id": 1632,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7734,7 +7962,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -7745,27 +7973,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -7923,7 +8146,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -7933,7 +8155,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -7967,10 +8188,10 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 81
+            "y": 72
           },
           "hiddenSeries": false,
-          "id": 1540,
+          "id": 1633,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7997,7 +8218,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -8008,27 +8229,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -8186,7 +8402,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -8196,7 +8411,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -8230,10 +8444,10 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 81
+            "y": 72
           },
           "hiddenSeries": false,
-          "id": 1541,
+          "id": 1634,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8260,7 +8474,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -8271,27 +8485,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -8449,7 +8658,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -8459,7 +8667,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -8493,10 +8700,10 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 88
+            "y": 79
           },
           "hiddenSeries": false,
-          "id": 1542,
+          "id": 1635,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8523,7 +8730,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -8534,27 +8741,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -8712,7 +8914,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -8722,7 +8923,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -8756,10 +8956,10 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 88
+            "y": 79
           },
           "hiddenSeries": false,
-          "id": 1543,
+          "id": 1636,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8786,7 +8986,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -8797,27 +8997,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -8975,7 +9170,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -8985,7 +9179,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -9019,10 +9212,10 @@
             "h": 7,
             "w": 12,
             "x": 0,
-            "y": 95
+            "y": 86
           },
           "hiddenSeries": false,
-          "id": 1544,
+          "id": 1637,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -9049,7 +9242,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -9060,27 +9253,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -9238,7 +9426,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -9248,7 +9435,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -9282,10 +9468,10 @@
             "h": 7,
             "w": 12,
             "x": 12,
-            "y": 95
+            "y": 86
           },
           "hiddenSeries": false,
-          "id": 1545,
+          "id": 1638,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -9312,7 +9498,7 @@
           "points": false,
           "renderer": "flot",
           "repeatDirection": "h",
-          "repeatIteration": 1621154675729,
+          "repeatIteration": 1621424198974,
           "repeatPanelId": 1339,
           "scopedVars": {
             "Interface": {
@@ -9323,27 +9509,22 @@
           },
           "seriesOverrides": [
             {
-              "$$hashKey": "object:385",
               "alias": "In - ether1",
               "yaxis": 1
             },
             {
-              "$$hashKey": "object:386",
               "alias": "In Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:387",
               "alias": "Out Unicast - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:388",
               "alias": "Out Discard - ether1",
               "yaxis": 2
             },
             {
-              "$$hashKey": "object:389",
               "alias": "In Discard - ether1",
               "yaxis": 2
             },
@@ -9501,7 +9682,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:237",
               "decimals": null,
               "format": "pps",
               "label": "",
@@ -9511,7 +9691,262 @@
               "show": true
             },
             {
-              "$$hashKey": "object:238",
+              "format": "pps",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {
+            "In - wlan1": "#ff2e63"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": null,
+          "decimals": null,
+          "description": "Showing values > 0",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 93
+          },
+          "hiddenSeries": false,
+          "id": 1639,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "maxPerRow": 2,
+          "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.5.5",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeatDirection": "h",
+          "repeatIteration": 1621424198974,
+          "repeatPanelId": 1339,
+          "scopedVars": {
+            "Interface": {
+              "selected": false,
+              "text": "vlan5_name",
+              "value": "vlan5_name"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "In - ether1",
+              "yaxis": 1
+            },
+            {
+              "alias": "In Unicast - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out Unicast - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out Discard - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Discard - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Unicast -",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Unicast -  ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Errors - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out Errors - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Unknown Protos - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out queue length - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "In Multicast - ether1",
+              "yaxis": 2
+            },
+            {
+              "alias": "Out Multicast - ether1",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "irate(ifHCInMulticastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "In Multicast",
+              "refId": "K"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifHCOutMulticastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Out Multicast",
+              "refId": "L"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifHCInBroadcastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "In Broadcast",
+              "refId": "C"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifHCOutBroadcastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Out Broadcast",
+              "refId": "A"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifHCInUcastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "In Unicast",
+              "refId": "B"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifHCOutUcastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Out Unicast",
+              "refId": "D"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifInDiscards{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "In Discard",
+              "refId": "E"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifOutDiscards{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Out Discard",
+              "refId": "F"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifInErrors{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "In Errors",
+              "refId": "G"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifOutErrors{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Out Errors",
+              "refId": "H"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifInUnknownProtos{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "In Unknown Protos",
+              "refId": "I"
+            },
+            {
+              "exemplar": true,
+              "expr": "irate(ifOutQLen{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "Out queue length",
+              "refId": "J"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Interface \"$Interface\"",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "pps",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
               "format": "pps",
               "label": "",
               "logBase": 1,
@@ -9644,7 +10079,7 @@
         "useTags": false
       },
       {
-        "allValue": null,
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "query_result(sort(ifIndex{ifName=~'^(ether).+',instance='$instance'}) or sort(ifIndex{ifName=~'^(sfp|wlan).+',instance='$instance'}) or sort(ifIndex{ifName=~'^bridge.+',instance='$instance'}) or  sort(ifIndex{ifName!~'^(ether|bridge).+',instance='$instance'}) )",
@@ -9779,7 +10214,7 @@
         "useTags": false
       },
       {
-        "allValue": "Null",
+        "allValue": "",
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "query_result((mtxrQueueTreeParentIndex * on (mtxrQueueTreeName) group_left(mtxrQueueTreeIndex) mtxrQueueTreeIndex{instance='$instance',}))",
@@ -9796,7 +10231,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "/mtxrQueueTreeIndex=\"(.*)\"/",
+        "regex": "/mtxrQueueTreeIndex=\"(.*)\",instance/",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
@@ -9839,5 +10274,5 @@
   "timezone": "",
   "title": "Mikrotik snmp prometheus",
   "uid": "CdHMHMjmk2",
-  "version": 142
+  "version": 176
 }
