@@ -29,6 +29,12 @@
       "version": ""
     },
     {
+      "type": "panel",
+      "id": "heatmap",
+      "name": "Heatmap",
+      "version": ""
+    },
+    {
       "type": "datasource",
       "id": "prometheus",
       "name": "Prometheus",
@@ -67,7 +73,7 @@
   "gnetId": 11589,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1621449121385,
+  "iteration": 1621532519255,
   "links": [],
   "panels": [
     {
@@ -438,7 +444,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 12,
         "y": 1
@@ -500,7 +506,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 3,
         "w": 3,
         "x": 15,
         "y": 1
@@ -707,6 +713,149 @@
       "type": "stat"
     },
     {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 12,
+        "y": 4
+      },
+      "id": 1242,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "/^n/a$/",
+          "values": false
+        },
+        "text": {},
+        "textMode": "name"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "mtxrHlActiveFan{instance='$instance'}",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{mtxrHlActiveFan}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Active Fan",
+      "type": "stat"
+    },
+    {
+      "cacheTimeout": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "from": "sysUpTime",
+              "id": 0,
+              "text": "",
+              "to": "",
+              "type": 2
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 3,
+        "x": 15,
+        "y": 4
+      },
+      "id": 1260,
+      "interval": null,
+      "links": [],
+      "maxDataPoints": 100,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "value_and_name"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "mtxrLicLevel{instance='$instance'}",
+          "interval": "",
+          "legendFormat": "Lic",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "mtxrLicUpgradableTo{instance='$instance'}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Lic Upgradable To",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "License level",
+      "type": "stat"
+    },
+    {
       "cacheTimeout": null,
       "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
@@ -796,7 +945,7 @@
     },
     {
       "datasource": null,
-      "description": "",
+      "description": "Wireless registration table entry count",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -819,90 +968,13 @@
         "h": 3,
         "w": 3,
         "x": 12,
-        "y": 5
+        "y": 6
       },
-      "id": 1242,
+      "id": 1645,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "/^n/a$/",
-          "values": false
-        },
-        "text": {},
-        "textMode": "name"
-      },
-      "pluginVersion": "7.5.5",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "mtxrHlActiveFan{instance='$instance'}",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{mtxrHlActiveFan}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Active Fan",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "from": "sysUpTime",
-              "id": 0,
-              "text": "",
-              "to": "",
-              "type": 2
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#299c46",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 15,
-        "y": 5
-      },
-      "id": 1260,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -912,29 +984,85 @@
           "values": false
         },
         "text": {},
-        "textMode": "value_and_name"
+        "textMode": "auto"
       },
       "pluginVersion": "7.5.5",
       "targets": [
         {
           "exemplar": true,
-          "expr": "mtxrLicLevel{instance='$instance'}",
-          "interval": "",
-          "legendFormat": "Lic",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "mtxrLicUpgradableTo{instance='$instance'}",
+          "expr": "mtxrWlRtabEntryCount{instance='$instance'}",
+          "format": "time_series",
           "hide": false,
+          "instant": true,
           "interval": "",
-          "legendFormat": "Lic Upgradable To",
-          "refId": "B"
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "License level",
+      "title": "Wi-Fi client count",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "description": "Wireless registration table entry count",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#299c46",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 15,
+        "y": 6
+      },
+      "id": 1646,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "mtxrWlCMRtabEntryCount{instance='$instance'}",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "CAPsMAN client count",
       "type": "stat"
     },
     {
@@ -1159,145 +1287,6 @@
     },
     {
       "aliasColors": {
-        "CPU Temp": "#e23e57"
-      },
-      "bars": false,
-      "cacheTimeout": null,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "${DS_PROMETHEUS}",
-      "description": "",
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 6,
-        "x": 12,
-        "y": 8
-      },
-      "hiddenSeries": false,
-      "id": 1262,
-      "interval": null,
-      "legend": {
-        "alignAsTable": false,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "maxDataPoints": 100,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.5.5",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatDirection": "h",
-      "seriesOverrides": [
-        {
-          "alias": "CPU Temp °C",
-          "yaxis": 2
-        },
-        {
-          "alias": "CPU Temp",
-          "yaxis": 2
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "hrProcessorLoad{instance='$instance'}",
-          "interval": "",
-          "legendFormat": "Load CPU",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "mtxrHlTemperature{instance='$instance'}/10",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "interval": "",
-          "legendFormat": "CPU Temp",
-          "refId": "B"
-        },
-        {
-          "exemplar": true,
-          "expr": "(hrStorageUsed{hrStorageIndex='65536',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='65536',instance='$instance'})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "RAM usage",
-          "refId": "C"
-        },
-        {
-          "exemplar": true,
-          "expr": "(hrStorageUsed{hrStorageIndex='131072',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='131072',instance='$instance'})",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "System disk",
-          "refId": "D"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "System",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "percent",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "celsius",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": true,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {
         "wlan1": "#ff2e63",
         "wlan2": "#08d9d6"
       },
@@ -1465,6 +1454,145 @@
       "timeShift": null,
       "title": "Board Name",
       "type": "stat"
+    },
+    {
+      "aliasColors": {
+        "CPU Temp": "#e23e57"
+      },
+      "bars": false,
+      "cacheTimeout": null,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 1262,
+      "interval": null,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "maxDataPoints": 100,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "repeatDirection": "h",
+      "seriesOverrides": [
+        {
+          "alias": "CPU Temp °C",
+          "yaxis": 2
+        },
+        {
+          "alias": "CPU Temp",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "hrProcessorLoad{instance='$instance'}",
+          "interval": "",
+          "legendFormat": "Load CPU",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "mtxrHlTemperature{instance='$instance'}/10",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "CPU Temp",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "(hrStorageUsed{hrStorageIndex='65536',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='65536',instance='$instance'})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "RAM usage",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "(hrStorageUsed{hrStorageIndex='131072',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='131072',instance='$instance'})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "System disk",
+          "refId": "D"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "System",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percent",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "celsius",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
     },
     {
       "datasource": null,
@@ -3297,7 +3425,7 @@
           "fillGradient": 0,
           "gridPos": {
             "h": 8,
-            "w": 15,
+            "w": 8,
             "x": 0,
             "y": 49
           },
@@ -3585,23 +3713,113 @@
                     "value": "center"
                   }
                 ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Tx"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 90
+                  },
+                  {
+                    "id": "unit",
+                    "value": "bytes"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Rx"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 90
+                  },
+                  {
+                    "id": "unit",
+                    "value": "bytes"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Tx rate"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 90
+                  },
+                  {
+                    "id": "unit",
+                    "value": "bps"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Rx rate"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 90
+                  },
+                  {
+                    "id": "unit",
+                    "value": "bps"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Uptime"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 90
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 1
+                  },
+                  {
+                    "id": "unit",
+                    "value": "timeticks"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value #I"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 263
+                  }
+                ]
               }
             ]
           },
           "gridPos": {
             "h": 8,
-            "w": 9,
-            "x": 15,
+            "w": 16,
+            "x": 8,
             "y": 49
           },
           "id": 1643,
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "Signal-to-Noise - more details",
-              "url": "http://www.wireless-nets.com/resources/tutorials/define_SNR_values.html"
-            }
-          ],
+          "links": [],
           "options": {
             "showHeader": true,
             "sortBy": []
@@ -3637,6 +3855,56 @@
               "interval": "",
               "legendFormat": "",
               "refId": "C"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabTxBytes{instance='$instance'}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "D"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabRxBytes{instance='$instance'}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "E"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabTxRate{instance='$instance'}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "F"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabRxRate{instance='$instance'}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "G"
+            },
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabUptime{instance='$instance'}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "H"
             }
           ],
           "timeFrom": null,
@@ -3676,21 +3944,31 @@
                   "job": true
                 },
                 "indexByName": {
-                  "Time": 4,
-                  "Value #A": 8,
-                  "Value #B": 3,
-                  "Value #C": 2,
-                  "__name__": 5,
-                  "instance": 6,
-                  "job": 7,
-                  "mtxrWlRtabAddr": 0,
-                  "mtxrWlRtabIface": 1
+                  "Time": 5,
+                  "Value #A": 9,
+                  "Value #B": 4,
+                  "Value #C": 3,
+                  "Value #D": 12,
+                  "Value #E": 13,
+                  "Value #F": 10,
+                  "Value #G": 11,
+                  "Value #H": 0,
+                  "__name__": 6,
+                  "instance": 7,
+                  "job": 8,
+                  "mtxrWlRtabAddr": 1,
+                  "mtxrWlRtabIface": 2
                 },
                 "renameByName": {
                   "Time": "",
                   "Value #A": "",
                   "Value #B": "Signal-to-Noise",
                   "Value #C": "Strength",
+                  "Value #D": "Tx",
+                  "Value #E": "Rx",
+                  "Value #F": "Tx rate",
+                  "Value #G": "Rx rate",
+                  "Value #H": "Uptime",
                   "job": "",
                   "mtxrWlRtabAddr": "Mac address",
                   "mtxrWlRtabIface": "Interface"
@@ -3699,6 +3977,156 @@
             }
           ],
           "type": "table"
+        },
+        {
+          "cacheTimeout": null,
+          "cards": {
+            "cardPadding": null,
+            "cardRound": null
+          },
+          "color": {
+            "cardColor": "#C4162A",
+            "colorScale": "sqrt",
+            "colorScheme": "interpolateRdYlGn",
+            "exponent": 0.5,
+            "max": -85,
+            "min": -30,
+            "mode": "spectrum"
+          },
+          "dataFormat": "tsbuckets",
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Signal Strength: signal strength in dBm (if first ppp-client modem supports)",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 57
+          },
+          "heatmap": {},
+          "hideZeroBuckets": false,
+          "highlightCards": true,
+          "id": 1647,
+          "legend": {
+            "show": false
+          },
+          "links": [],
+          "pluginVersion": "7.5.5",
+          "repeatDirection": "h",
+          "reverseYBuckets": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabStrength{instance='$instance'}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "{{mtxrWlRtabAddr}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "History Wi-Fi Strength",
+          "tooltip": {
+            "show": true,
+            "showHistogram": true
+          },
+          "type": "heatmap",
+          "xAxis": {
+            "show": true
+          },
+          "xBucketNumber": null,
+          "xBucketSize": "2m",
+          "yAxis": {
+            "decimals": null,
+            "format": "dBm",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true,
+            "splitFactor": null
+          },
+          "yBucketBound": "auto",
+          "yBucketNumber": null,
+          "yBucketSize": 2
+        },
+        {
+          "cacheTimeout": null,
+          "cards": {
+            "cardPadding": null,
+            "cardRound": null
+          },
+          "color": {
+            "cardColor": "#C4162A",
+            "colorScale": "sqrt",
+            "colorScheme": "interpolateRdYlGn",
+            "exponent": 0.5,
+            "max": 5,
+            "min": 50,
+            "mode": "spectrum"
+          },
+          "dataFormat": "tsbuckets",
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Measured in dB, if value does not exist it is indicated with 0",
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 57
+          },
+          "heatmap": {},
+          "hideZeroBuckets": false,
+          "highlightCards": true,
+          "id": 1648,
+          "legend": {
+            "show": false
+          },
+          "links": [],
+          "pluginVersion": "7.5.5",
+          "repeatDirection": "h",
+          "reverseYBuckets": false,
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWlRtabSignalToNoise{instance='$instance'}",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "{{mtxrWlRtabAddr}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "History Wi-Fi Signal-to-Noise",
+          "tooltip": {
+            "show": true,
+            "showHistogram": true
+          },
+          "type": "heatmap",
+          "xAxis": {
+            "show": true
+          },
+          "xBucketNumber": null,
+          "xBucketSize": "2m",
+          "yAxis": {
+            "decimals": null,
+            "format": "dB",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true,
+            "splitFactor": null
+          },
+          "yBucketBound": "auto",
+          "yBucketNumber": null,
+          "yBucketSize": 2
         }
       ],
       "title": "Wireless",
@@ -10274,5 +10702,5 @@
   "timezone": "",
   "title": "Mikrotik snmp prometheus",
   "uid": "CdHMHMjmk2",
-  "version": 176
+  "version": 190
 }

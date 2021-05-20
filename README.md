@@ -25,3 +25,4 @@ Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://gith
 
 ![img1](https://github.com/IgorKha/Grafana-Mikrotik/blob/master/readme/1.png)
 ![img2](https://github.com/IgorKha/Grafana-Mikrotik/blob/master/readme/2.png)
+![img3](https://github.com/IgorKha/Grafana-Mikrotik/blob/master/readme/3.png)
