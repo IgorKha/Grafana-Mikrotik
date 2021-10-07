@@ -7,7 +7,7 @@ Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://gith
 |   | ver.  |
 |---|---|
 | snmp_exporter  |  `>=0.20.0` |
-| Grafana  | `>=7.5.5`  |
+| Grafana  | `>=8.1.7`  |
 
 1.add into prometheus.yml
 
@@ -45,6 +45,4 @@ sudo docker run -d -p 9116:9116 mashinkopochinko/snmp_exporter_mikrotik:latest
 ```
 
 -----------
-![img1](https://github.com/IgorKha/Grafana-Mikrotik/blob/master/readme/1.png)
-![img2](https://github.com/IgorKha/Grafana-Mikrotik/blob/master/readme/2.png)
-![img3](https://github.com/IgorKha/Grafana-Mikrotik/blob/master/readme/3.png)
+![img1](/readme/screen.png)
