@@ -8,7 +8,7 @@ global:
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-      monitor: 'example'
+      monitor: 'Mikrotik'
 
 # Alertmanager configuration
 alerting:
@@ -40,7 +40,7 @@ scrape_configs:
   - job_name: Mikrotik
     static_configs:
       - targets:
-        - 0.0.0.0  # SNMP device IP.
+        - 192.168.88.1  # SNMP device IP.
     metrics_path: /snmp
     params:
       module: [mikrotik]
@@ -50,4 +50,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: localhost:9116  # The SNMP exporter's real hostname:port.
+        replacement: mk_snmp_exporter:9116  # The SNMP exporter's real hostname:port.

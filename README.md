@@ -8,6 +8,21 @@ Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://gith
 |---|---|
 | snmp_exporter  |  `>=0.20.0` |
 | Grafana  | `>=8.1.7`  |
+## 🐳 Deploy with docker-compose 
+
+1. Change targets ip (192.168.88.1) into file prometheus/prometheus.yml
+2. Run
+```console
+docker-compose up -d
+```
+3. Open [localhost:3000](http://localhost:3000)
+
+Grafana login: admin, password: mikrotik
+
+If you want to change the credentials, then edit the ".env" file
+
+-----------
+## Manual deploy
 
 1.add into prometheus.yml
 
@@ -15,7 +30,7 @@ Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://gith
   - job_name: Mikrotik
     static_configs:
       - targets:
-        - 0.0.0.0  # SNMP device IP.
+        - 192.168.88.1  # SNMP device IP.
     metrics_path: /snmp
     params:
       module: [mikrotik]
@@ -34,7 +49,7 @@ Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://gith
 
 -----------
 
-## Docker snmp_exporter
+### Docker snmp_exporter
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/mashinkopochinko/snmp_exporter_mikrotik?logo=docker)](https://hub.docker.com/repository/docker/mashinkopochinko/snmp_exporter_mikrotik)
 
