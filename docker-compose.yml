@@ -16,6 +16,7 @@ services:
   
   prometheus:
     image: prom/prometheus
+    user: root
     container_name: mk_prometheus
     restart: always
     volumes:
