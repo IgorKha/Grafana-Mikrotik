@@ -10,7 +10,7 @@ Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://gith
 | Grafana  | `>=8.1.7`  |
 ## 🐳 Deploy with docker-compose 
 
-### sh script deploy
+### deploy with sh script
 
 ```console
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh)" "" --config
@@ -26,7 +26,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/m
 >For example:
 >
 >    sh run.sh --config
-### docker manual deploy
+### deploy with docker-compose manual 
 
 1. Change targets ip (192.168.88.1) into file prometheus/prometheus.yml
 2. Run
