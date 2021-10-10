@@ -113,7 +113,7 @@ router_ip() {
             if [ -d "./${REPO}" ]; then
                 sed -i -e 's/192.168.88.1/'"${IP}"'/g' \
                 ${REPO}/prometheus/prometheus.yml
-                sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"$IP"'/g' ${REPO}/$ENV_FILE
+                sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"$IP"'/g' $ENV_FILE
             else
                 sed -i -e 's/192.168.88.1/'"${IP}"'/g' \
                 ./prometheus/prometheus.yml
@@ -208,3 +208,5 @@ main() {
 }
 
 main "$@"
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh)" "" --config
