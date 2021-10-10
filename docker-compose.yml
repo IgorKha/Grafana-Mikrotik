@@ -16,11 +16,13 @@ services:
   
   prometheus:
     image: prom/prometheus
-    user: root
+    user: ${CURRENT_USER}
     container_name: mk_prometheus
     restart: always
+    environment:
+      - MIKROTIK_IP=${MIKROTIK_IP}
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/:/etc/prometheus
       - ./prometheus/data/:/prometheus
     ports:
       - "9090:9090"
