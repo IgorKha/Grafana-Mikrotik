@@ -137,7 +137,7 @@ grafana_credentials() {
         else
             echo "Default Grafana:
             User: ${YELLOW}admin${RESET}
-            Password: ${YELLOW}mikrotik\n${RESET}"
+            Password: ${YELLOW}mikrotik${RESET}"
         fi
         return
     fi
@@ -208,5 +208,3 @@ main() {
 }
 
 main "$@"
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh)" "" --config

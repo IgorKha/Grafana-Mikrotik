@@ -10,6 +10,24 @@ Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://gith
 | Grafana  | `>=8.1.7`  |
 ## 🐳 Deploy with docker-compose 
 
+### sh script deploy
+
+```console
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh)" "" --config
+```
+> You can also pass some arguments to script to set some these options:
+>
+>    --config: change the user and password to grafana and specify the mikrotik IP address
+>
+>    stop: stop docker containers
+>
+>    --help
+>
+>For example:
+>
+>    sh run.sh --config
+### docker manual deploy
+
 1. Change targets ip (192.168.88.1) into file prometheus/prometheus.yml
 2. Run
 ```console
