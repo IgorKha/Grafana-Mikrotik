@@ -1,0 +1,34 @@
+name: simple test
+on:
+  push:
+    branches: master
+    
+jobs:
+  
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Shellcheck
+        uses: azohra/shell-linter@latest
+        with:
+          path: "run.sh"
+          severity: "warning, error"
+  
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: deploy with sh script
+        run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/practice-git-1/master/run.sh?token=AARJYMOSNNLREAAM2J7HL4LBMR3CA)" ""
+        
+      - name: Test Grafana
+        run: sleep 5 && curl -ILsS --retry 5 --retry-delay 2 "http://localhost:3000/login"
+
+      - name: Test Prometheus
+        run: curl -ILsS --retry 5 --retry-delay 2 "http://localhost:9090"
+        
+      - name: Test snmp_exporter
+        run: curl -ILsS --retry 5 --retry-delay 2 "http://localhost:9116" 
+        
