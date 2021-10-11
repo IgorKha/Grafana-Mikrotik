@@ -26,6 +26,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/m
 >For example:
 >
 >    sh run.sh --config
+
+[![asciicast](https://asciinema.org/a/nOhuc7LvI6bRWbg7dcvqFQ4Kc.png)](https://asciinema.org/a/nOhuc7LvI6bRWbg7dcvqFQ4Kc)
+
 ### deploy with docker-compose manual 
 
 1. Change targets ip (192.168.88.1) into file prometheus/prometheus.yml
