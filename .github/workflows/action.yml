@@ -21,7 +21,7 @@ jobs:
     
     steps:
       - name: deploy with sh script
-        run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/practice-git-1/master/run.sh?token=AARJYMOSNNLREAAM2J7HL4LBMR3CA)" ""
+        run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh)" ""
         
       - name: Test Grafana
         run: sleep 5 && curl -ILsS --retry 5 --retry-delay 2 "http://localhost:3000/login"
