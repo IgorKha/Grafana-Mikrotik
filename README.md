@@ -2,6 +2,8 @@
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=IgorKha.Grafana-Mikrotik)
 
+[![Donate using Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/~1772367/donate)
+
 Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://github.com/prometheus/snmp_exporter)
 
 |   | ver.  |

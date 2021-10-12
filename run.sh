@@ -112,11 +112,11 @@ router_ip() {
         if ask "Change target mikrotik IP address ?" Y; then
             read -rp 'Enter target mikrotik IP address: ' IP
             if [ -d "./${REPO}" ]; then
-                sed -i -e 's/192.168.88.1/'"${IP}"'/g' \
+                sed -ri -e '/mikrotik_ip/s/([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*)/'"${IP}"'/g' \
                 ${REPO}/prometheus/prometheus.yml
                 sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"$IP"'/g' "$ENV_FILE"
             else
-                sed -i -e 's/192.168.88.1/'"${IP}"'/g' \
+                sed -ri -e '/mikrotik_ip/s/([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*)/'"${IP}"'/g' \
                 ./prometheus/prometheus.yml
                 sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"$IP"'/g' "$ENV_FILE"
             fi

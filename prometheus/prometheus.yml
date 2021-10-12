@@ -40,7 +40,7 @@ scrape_configs:
   - job_name: Mikrotik
     static_configs:
       - targets:
-        - 192.168.88.1 # SNMP device IP.
+        - 192.168.88.1 # mikrotik_ip
     metrics_path: /snmp
     params:
       module: [mikrotik]
