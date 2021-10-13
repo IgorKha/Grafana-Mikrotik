@@ -2,6 +2,7 @@
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=IgorKha.Grafana-Mikrotik)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7910b8397f4a45cd8d44b6cdd5d1fe7b)](https://app.codacy.com/gh/IgorKha/Grafana-Mikrotik?utm_source=github.com&utm_medium=referral&utm_content=IgorKha/Grafana-Mikrotik&utm_campaign=Badge_Grade_Settings)
 [![Donate using Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/~1772367/donate)
 
 Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://github.com/prometheus/snmp_exporter)
