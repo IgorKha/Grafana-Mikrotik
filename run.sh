@@ -14,10 +14,11 @@ set -e
 
 REPO=Grafana-Mikrotik
 ENV_FILE=${ENV_FILE:-.env}
+IP=$(grep -R 'MIKROTIK_IP' ./.env | cut -d= -f2)
 
 #? Colors
 RED=$(printf '\033[31m')
-# GREEN=$(printf '\033[32m')
+GREEN=$(printf '\033[32m')
 YELLOW=$(printf '\033[33m')
 BLUE=$(printf '\033[34m')
 BOLD=$(printf '\033[1m')
@@ -109,26 +110,52 @@ clone_git() {
 
 router_ip() {
     if [ "$CONFIG" = yes ]; then
-        if ask "Change target mikrotik IP address ?" Y; then
+        echo -e "\n${BLUE}===================================="
+        echo -e "\n${BOLD}Prometheus${RESET}\n"
+        if ask "Change target mikrotik IP address ? (current ${IP})" Y; then
             read -rp 'Enter target mikrotik IP address: ' IP
             if [ -d "./${REPO}" ]; then
-                sed -ri -e '/mikrotik_ip/s/([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*)/'"${IP}"'/g' \
+                sed -ri -e '/mikrotik_ip/s/(- ).*( #.*)/\1'"${IP}"'\2/g' \
                 ${REPO}/prometheus/prometheus.yml
                 sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"$IP"'/g' "$ENV_FILE"
+                echo -e "\n${GREEN}... Prometheus target IP changed to ${IP}"
             else
-                sed -ri -e '/mikrotik_ip/s/([0-9]*\.[0-9]*\.[0-9]*\.[0-9]*)/'"${IP}"'/g' \
+                sed -ri -e '/mikrotik_ip/s/(- ).*( #.*)/\1'"${IP}"'\2/g' \
                 ./prometheus/prometheus.yml
                 sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"$IP"'/g' "$ENV_FILE"
+                echo -e "\n${GREEN}... Prometheus target IP changed to ${IP}"
             fi
         return
         fi
-        return
+        echo -e "\n${BLUE}...Skipped step"
+    return
     fi
 }
 
+# snmp_on() {
+#     if [ "$CONFIG" = yes ]; then
+#         echo -e "\n${BLUE}===================================="
+#         echo -e "${BOLD}Mikrotik SNMP ACTIVATION${RESET}"
+#         if ask "Activate snmp mikrotik using ssh?" N; then
+#             read -rp 'Enter login: ' MK_LOGIN
+#             # read -rsp 'Enter password: ' MK_PASSWD
+
+#             COMM="
+#             snmp
+#             "
+#             ssh ${MK_LOGIN}@$IP "${COMM}"
+
+#         else
+#             echo "skipped"
+#         fi
+#         return
+#     fi
+# }
+
 grafana_credentials() {
     if [ "$CONFIG" = yes ]; then
-        echo "${YELLOW}Grafana${RESET}"
+        echo -e "\n${YELLOW}===================================="
+        echo -e "\n${BOLD}Grafana${RESET}\n"
         if ask "Change default credentials Grafana ?" N; then
             read -rp 'Enter grafana Username: ' GF_USER
             read -rsp 'Enter grafana Password: ' GF_PASSWD
@@ -199,6 +226,7 @@ main() {
 
     helper
     router_ip
+    # snmp_on
     grafana_credentials
 
     # Change UID:GID prometheus container to current user
