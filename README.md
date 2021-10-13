@@ -1,50 +1,59 @@
 # Grafana-Mikrotik
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=IgorKha.Grafana-Mikrotik)
+![example branch parameter](https://github.com/IgorKha/Grafana-Mikrotik/actions/workflows/action.yml/badge.svg?branch=master)
+![mikrotikOS](https://img.shields.io/badge/Mikrotik_ROS-v6.49-blue)
+![Grafana](https://img.shields.io/badge/Grafana-v8.1.7-orange?logo=grafana)
+![Prometheus](https://img.shields.io/badge/Prometheus-v2.30.3-red?logo=prometheus)
+![snmp_exporter](https://img.shields.io/badge/snmp__exporter-v0.20.0-red?logo=prometheus)
 
 [![Donate using Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/~1772367/donate)
 
-Grafana dashboard for Mikrotik/routerOS. [prometheus/snmp_exporter](https://github.com/prometheus/snmp_exporter)
+-----------
 
-|   | ver.  |
-|---|---|
-| snmp_exporter  |  `>=0.20.0` |
-| Grafana  | `>=8.1.7`  |
-## 🐳 Deploy with docker-compose 
+## 🐳 Deploy with docker-compose
 
-### deploy with sh script
+### Deploy with sh script
 
 ```console
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh)" "" --config
 ```
-> You can also pass some arguments to script to set some these options:
->
->    --config: change the user and password to grafana and specify the mikrotik IP address
->
->    stop: stop docker containers
->
->    --help
->
->For example:
->
->    sh run.sh --config
+
+```console
+  You can also pass some arguments to script to set some these options:
+
+    --config: change the user and password to grafana and specify the mikrotik IP address
+
+    stop: stop docker containers
+
+    --help
+```
+
+For example:
+
+```console
+    sh run.sh --config
+```
 
 [![asciicast](https://asciinema.org/a/nOhuc7LvI6bRWbg7dcvqFQ4Kc.png)](https://asciinema.org/a/nOhuc7LvI6bRWbg7dcvqFQ4Kc)
 
-### deploy with docker-compose manual 
+### deploy with docker-compose manual
 
-1. Change targets ip (192.168.88.1) into file prometheus/prometheus.yml
-2. Run
+1.Change targets ip (192.168.88.1) into file prometheus/prometheus.yml
+2.Run
+
 ```console
 docker-compose up -d
 ```
-3. Open [localhost:3000](http://localhost:3000)
+
+3.Open [localhost:3000](http://localhost:3000)
 
 Grafana login: admin, password: mikrotik
 
 If you want to change the credentials, then edit the ".env" file
 
 -----------
+
 ## Manual deploy
 
 1.add into prometheus.yml

@@ -1,11 +1,11 @@
-name: simple test
-on:
-  push:
-    branches: master
-    
+name: deploy
+
+on: [push, pull_request]
+
 jobs:
-  
+
   lint:
+    name: lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,9 +16,9 @@ jobs:
           severity: "warning, error"
   
   test:
+    name: test
     needs: lint
     runs-on: ubuntu-latest
-    
     steps:
       - name: deploy with sh script
         run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh)" ""
