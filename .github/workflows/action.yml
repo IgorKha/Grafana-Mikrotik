@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deploy with sh script
-        run: sh -c "$(curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh)" ""
+        run: curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh | bash -s --
         
       - name: Test Grafana
         run: sleep 5 && curl -ILsS --retry 5 --retry-delay 2 "http://localhost:3000/login"

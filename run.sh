@@ -62,10 +62,10 @@ ask() {
 }
 
 command_exists() {
-    command -v "$@" || {
+    command -v "$@" >/dev/null 2>&1 || {
         fmt_error "$* is not installed. Please install $* first."
         exit 1
-    } 
+    }
 }
 
 fmt_error() {
@@ -94,7 +94,7 @@ clone_git() {
 
 router_ip() {
     if [[ "${CONFIG}" = yes ]]; then
-        IP=$(grep -R 'MIKROTIK_IP' "${ENV_FILE}" 2>&1 | cut -d= -f2)
+        IP=$(grep -R 'MIKROTIK_IP' "${ENV_FILE}" | cut -d= -f2)
         echo -e "\n${BLUE}===================================="
         echo -e "\n${BOLD}Prometheus${RESET}\n"
         if ask "Change target mikrotik IP address ? (current ${IP})" Y; then
