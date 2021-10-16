@@ -3,7 +3,7 @@
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=IgorKha.Grafana-Mikrotik)
 ![example branch parameter](https://github.com/IgorKha/Grafana-Mikrotik/actions/workflows/action.yml/badge.svg?branch=master)
 ![mikrotikOS](https://img.shields.io/badge/Mikrotik_ROS-v6.49-blue)
-![Grafana](https://img.shields.io/badge/Grafana-v8.1.7-orange?logo=grafana)
+![Grafana](https://img.shields.io/badge/Grafana-v8.2.1-orange?logo=grafana)
 ![Prometheus](https://img.shields.io/badge/Prometheus-v2.30.3-red?logo=prometheus)
 ![snmp_exporter](https://img.shields.io/badge/snmp__exporter-v0.20.0-red?logo=prometheus)
 
@@ -13,7 +13,7 @@
 
 ## 🐳 Deploy with docker-compose
 
-### Deploy with sh script
+### Deploy with bash script
 
 ```console
 curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh | bash -s -- --config
@@ -40,6 +40,7 @@ For example:
 ### deploy with docker-compose manual
 
 1.Change targets ip (192.168.88.1) into file prometheus/prometheus.yml
+
 2.Run
 
 ```console
@@ -48,7 +49,9 @@ docker-compose up -d
 
 3.Open [localhost:3000](http://localhost:3000)
 
-Grafana login: admin, password: mikrotik
+*  Grafana login: `admin`
+
+*  Password: `mikrotik`
 
 If you want to change the credentials, then edit the ".env" file
 
