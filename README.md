@@ -2,9 +2,9 @@
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=IgorKha.Grafana-Mikrotik)
 ![example branch parameter](https://github.com/IgorKha/Grafana-Mikrotik/actions/workflows/action.yml/badge.svg?branch=master)
-![mikrotikOS](https://img.shields.io/badge/Mikrotik_ROS-v6.49-blue)
-![Grafana](https://img.shields.io/badge/Grafana-v8.2.1-orange?logo=grafana)
-![Prometheus](https://img.shields.io/badge/Prometheus-v2.30.3-red?logo=prometheus)
+![mikrotikOS](https://img.shields.io/badge/Mikrotik_ROS-v7.1.1-blue)
+![Grafana](https://img.shields.io/badge/Grafana-v8.3.4-orange?logo=grafana)
+![Prometheus](https://img.shields.io/badge/Prometheus-v2.33.0-red?logo=prometheus)
 ![snmp_exporter](https://img.shields.io/badge/snmp__exporter-v0.20.0-red?logo=prometheus)
 
 [![Donate using Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/~1772367/donate)
@@ -32,7 +32,7 @@ curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run
 For example:
 
 ```console
-    sh run.sh --config
+    bash run.sh --config
 ```
 
 [![asciicast](https://asciinema.org/a/nOhuc7LvI6bRWbg7dcvqFQ4Kc.png)](https://asciinema.org/a/nOhuc7LvI6bRWbg7dcvqFQ4Kc)

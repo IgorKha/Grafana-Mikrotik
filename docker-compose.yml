@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   grafana:
-    image: grafana/grafana:8.2.1
+    image: grafana/grafana:8.3.4
     container_name: mk_grafana
     restart: always
     volumes:

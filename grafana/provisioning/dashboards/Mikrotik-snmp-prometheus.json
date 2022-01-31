@@ -9,6 +9,7 @@
       "pluginName": "Prometheus"
     }
   ],
+  "__elements": [],
   "__requires": [
     {
       "type": "panel",
@@ -20,7 +21,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.2.1"
+      "version": "8.3.4"
     },
     {
       "type": "panel",
@@ -78,13 +79,13 @@
       }
     ]
   },
-  "description": "Mikrotik snmp monitoring (prometheus)",
-  "editable": false,
+  "description": "Mikrotik snmp monitoring (prometheus) 8.3.4",
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 14420,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1634417429647,
+  "iteration": 1643643529234,
   "links": [
     {
       "asDropdown": false,
@@ -115,7 +116,6 @@
   "panels": [
     {
       "collapsed": true,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -125,8 +125,10 @@
       "id": 1655,
       "panels": [
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Total SNMP time scrape took (walk and processing)",
           "fieldConfig": {
             "defaults": {
@@ -136,7 +138,6 @@
               "mappings": [
                 {
                   "options": {
-                    "from": null,
                     "result": {
                       "text": ""
                     },
@@ -178,7 +179,6 @@
             "y": 1
           },
           "id": 1656,
-          "interval": null,
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -196,7 +196,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -207,14 +207,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Total SNMP time (walk and processing)",
           "type": "stat"
         },
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Time SNMP walk/bulkwalk took",
           "fieldConfig": {
             "defaults": {
@@ -224,7 +224,6 @@
               "mappings": [
                 {
                   "options": {
-                    "from": null,
                     "result": {
                       "text": ""
                     },
@@ -266,7 +265,6 @@
             "y": 1
           },
           "id": 1657,
-          "interval": null,
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -284,7 +282,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -295,14 +293,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Time SNMP walk/bulkwalk took",
           "type": "stat"
         },
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -312,7 +310,6 @@
               "mappings": [
                 {
                   "options": {
-                    "from": null,
                     "result": {
                       "text": ""
                     },
@@ -342,7 +339,6 @@
             "y": 1
           },
           "id": 1658,
-          "interval": null,
           "links": [],
           "maxDataPoints": 100,
           "options": {
@@ -360,7 +356,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -371,8 +367,6 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "scrape pdus returned",
           "type": "stat"
         }
@@ -382,7 +376,6 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -395,8 +388,10 @@
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -406,7 +401,6 @@
           "mappings": [
             {
               "options": {
-                "from": null,
                 "result": {
                   "text": ""
                 },
@@ -452,7 +446,6 @@
         "y": 2
       },
       "id": 476,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -470,7 +463,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -480,13 +473,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Uptime",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "The current operational state of the device described by this row of the table. A value unknown(1) indicates that the current state of the device is unknown. running(2) indicates that the device is up and running and that no unusual error conditions are known. The warning(3) state indicates that agent has been informed of an unusual error condition by the operational software (e.g., a disk device driver) but that the device is still 'operational'. An example would be a high number of soft errors on a disk. A value of testing(4), indicates that the device is not available for use because it is in the testing state. The state of down(5) is used only when the agent has been informed that the device is not available for any use.",
       "fieldConfig": {
         "defaults": {
@@ -570,7 +560,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -581,13 +571,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Status device",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "The number of errors detected on this device",
       "fieldConfig": {
         "defaults": {
@@ -633,7 +620,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -645,13 +632,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Device Errors",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -693,7 +677,7 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -705,13 +689,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "System identity",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -753,7 +734,7 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -765,41 +746,26 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Serial Number",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
       "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [
-            {
-              "options": {
-                "": {
-                  "index": 0,
-                  "text": "N/A"
-                }
-              },
-              "type": "value"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "#299c46",
+                "color": "super-light-yellow",
                 "value": null
               }
             ]
-          },
-          "unit": "string"
+          }
         },
         "overrides": []
       },
@@ -809,18 +775,15 @@
         "x": 16,
         "y": 2
       },
-      "id": 1653,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
+      "id": 1241,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "center",
+        "justifyMode": "auto",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "last"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
@@ -828,25 +791,26 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
-          "expr": "mtxrNote{instance='$instance'}",
+          "expr": "sysDescr{instance='$instance'}",
+          "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": " {{mtxrNote}}",
+          "legendFormat": "{{sysDescr}}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Note",
+      "title": "Model",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -874,7 +838,6 @@
         "y": 4
       },
       "id": 1325,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -892,7 +855,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -903,13 +866,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "System date",
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -950,7 +910,7 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -963,13 +923,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Board ver",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1011,7 +968,7 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1024,13 +981,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Package ver",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1072,7 +1026,7 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1084,13 +1038,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Board Name",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1132,7 +1083,7 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1144,29 +1095,41 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Software ID",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "": {
+                  "index": 0,
+                  "text": "N/A"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "super-light-yellow",
+                "color": "#299c46",
                 "value": null
               }
             ]
-          }
+          },
+          "unit": "string"
         },
         "overrides": []
       },
@@ -1176,15 +1139,17 @@
         "x": 16,
         "y": 4
       },
-      "id": 1241,
+      "id": 1653,
+      "links": [],
+      "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
@@ -1192,25 +1157,21 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
-          "expr": "sysDescr{instance='$instance'}",
-          "hide": false,
+          "expr": "mtxrNote{instance='$instance'}",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{sysDescr}}",
+          "legendFormat": " {{mtxrNote}}",
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Model",
+      "title": "Note",
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1261,7 +1222,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1276,8 +1237,10 @@
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1325,7 +1288,6 @@
         "y": 6
       },
       "id": 482,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -1341,7 +1303,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1352,14 +1314,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "RAM load ",
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1407,7 +1369,6 @@
         "y": 6
       },
       "id": 480,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -1423,7 +1384,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1434,13 +1395,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "system disk load",
       "type": "gauge"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1497,7 +1455,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1508,14 +1466,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "CPU Temp",
       "type": "gauge"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1574,7 +1532,6 @@
         "y": 6
       },
       "id": 1262,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -1632,13 +1589,10 @@
           "refId": "E"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "System",
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1681,7 +1635,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1693,13 +1647,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "CPU frequency",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1741,7 +1692,7 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1753,13 +1704,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Active Fan",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "Wireless registration table entry count",
       "fieldConfig": {
         "defaults": {
@@ -1801,7 +1749,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1814,14 +1762,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Wi-Fi client count",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1831,7 +1779,6 @@
           "mappings": [
             {
               "options": {
-                "from": null,
                 "result": {
                   "text": ""
                 },
@@ -1864,7 +1811,6 @@
         "y": 11
       },
       "id": 1260,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -1882,7 +1828,7 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1900,13 +1846,10 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "License level",
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1979,7 +1922,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -1992,13 +1935,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "POE Status",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2041,7 +1981,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -2054,13 +1994,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "POE Power",
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2102,7 +2039,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -2115,13 +2052,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "POE Current",
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2163,7 +2097,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -2176,13 +2110,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "POE Voltage",
       "type": "stat"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2274,13 +2205,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Network Traffic Basic",
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "description": "Status link/states: The current operational state of the interface",
       "fieldConfig": {
         "defaults": {
@@ -2288,7 +2216,6 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": null,
             "displayMode": "color-text",
             "filterable": false
           },
@@ -2638,8 +2565,7 @@
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": null
+                "id": "custom.width"
               }
             ]
           }
@@ -2653,6 +2579,13 @@
       },
       "id": 1275,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 0,
         "showHeader": true,
         "sortBy": [
@@ -2662,7 +2595,7 @@
           }
         ]
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -2764,8 +2697,6 @@
           "refId": "J"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Interfaces",
       "transformations": [
         {
@@ -2887,8 +2818,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "decimals": null,
       "description": "Showing values > 0",
       "fill": 1,
       "fillGradient": 0,
@@ -2920,7 +2849,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -3125,9 +3054,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Tx Eth errors, etc",
       "tooltip": {
         "shared": true,
@@ -3136,34 +3063,25 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
-          "decimals": null,
           "format": "bps",
           "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -3173,8 +3091,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "decimals": null,
       "description": "Showing values > 0",
       "fill": 1,
       "fillGradient": 0,
@@ -3206,7 +3122,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -3334,9 +3250,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Rx Eth errors, etc",
       "tooltip": {
         "shared": true,
@@ -3345,38 +3259,28 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
-          "decimals": null,
           "format": "bps",
           "label": "",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3384,7 +3288,6 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": null,
             "displayMode": "color-text",
             "filterable": false
           },
@@ -3475,6 +3378,13 @@
       },
       "id": 1652,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "frameIndex": 0,
         "showHeader": true,
         "sortBy": [
@@ -3484,7 +3394,7 @@
           }
         ]
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "exemplar": true,
@@ -3556,8 +3466,6 @@
           "refId": "G"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Neighbors",
       "transformations": [
         {
@@ -3612,7 +3520,6 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3633,10 +3540,12 @@
             "TX CCQ - Tilda": "#ff2e63"
           },
           "bars": false,
-          "cacheTimeout": null,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fill": 1,
           "fillGradient": 0,
@@ -3644,7 +3553,7 @@
             "h": 9,
             "w": 8,
             "x": 0,
-            "y": 52
+            "y": 3
           },
           "hiddenSeries": false,
           "id": 1270,
@@ -3669,7 +3578,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -3749,9 +3658,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Wi-Fi Overall Tx CCQ & Noise",
           "tooltip": {
             "shared": true,
@@ -3760,29 +3667,21 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
-              "decimals": null,
               "format": "percent",
               "label": "",
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
-              "decimals": null,
               "format": "dBm",
               "label": "",
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
@@ -3792,7 +3691,10 @@
           }
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -3911,7 +3813,7 @@
             "h": 9,
             "w": 8,
             "x": 8,
-            "y": 52
+            "y": 3
           },
           "id": 1261,
           "options": {
@@ -3948,13 +3850,10 @@
               "refId": "B"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Wi-Fi Client count",
           "type": "timeseries"
         },
         {
-          "datasource": null,
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -4073,7 +3972,7 @@
             "h": 9,
             "w": 8,
             "x": 16,
-            "y": 52
+            "y": 3
           },
           "id": 1613,
           "options": {
@@ -4100,13 +3999,10 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Wi-Fi frequency",
           "type": "timeseries"
         },
         {
-          "datasource": null,
           "description": "Wireless registration table. It is indexed by remote mac-address and local interface index.\n\nMeasured in dB, if value does not exist it is indicated with 0",
           "fieldConfig": {
             "defaults": {
@@ -4114,7 +4010,6 @@
                 "mode": "thresholds"
               },
               "custom": {
-                "align": null,
                 "displayMode": "auto",
                 "filterable": false
               },
@@ -4300,8 +4195,7 @@
                 },
                 "properties": [
                   {
-                    "id": "custom.width",
-                    "value": null
+                    "id": "custom.width"
                   },
                   {
                     "id": "unit",
@@ -4347,15 +4241,22 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 61
+            "y": 12
           },
           "id": 1643,
           "links": [],
           "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
             "showHeader": true,
             "sortBy": []
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -4438,8 +4339,6 @@
               "refId": "H"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Wi-Fi Clients",
           "transformations": [
             {
@@ -4535,11 +4434,7 @@
           "type": "table"
         },
         {
-          "cacheTimeout": null,
-          "cards": {
-            "cardPadding": null,
-            "cardRound": null
-          },
+          "cards": {},
           "color": {
             "cardColor": "#C4162A",
             "colorScale": "sqrt",
@@ -4550,13 +4445,16 @@
             "mode": "spectrum"
           },
           "dataFormat": "tsbuckets",
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Signal Strength: signal strength in dBm (if first ppp-client modem supports)",
           "gridPos": {
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 69
+            "y": 20
           },
           "heatmap": {},
           "hideZeroBuckets": false,
@@ -4579,8 +4477,6 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "History Wi-Fi Strength",
           "tooltip": {
             "show": true,
@@ -4590,27 +4486,17 @@
           "xAxis": {
             "show": true
           },
-          "xBucketNumber": null,
           "xBucketSize": "2m",
           "yAxis": {
-            "decimals": null,
             "format": "dBm",
             "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true,
-            "splitFactor": null
+            "show": true
           },
           "yBucketBound": "auto",
-          "yBucketNumber": null,
           "yBucketSize": 2
         },
         {
-          "cacheTimeout": null,
-          "cards": {
-            "cardPadding": null,
-            "cardRound": null
-          },
+          "cards": {},
           "color": {
             "cardColor": "#C4162A",
             "colorScale": "sqrt",
@@ -4621,13 +4507,16 @@
             "mode": "spectrum"
           },
           "dataFormat": "tsbuckets",
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Measured in dB, if value does not exist it is indicated with 0",
           "gridPos": {
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 69
+            "y": 20
           },
           "heatmap": {},
           "hideZeroBuckets": false,
@@ -4650,8 +4539,6 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "History Wi-Fi Signal-to-Noise",
           "tooltip": {
             "show": true,
@@ -4661,19 +4548,13 @@
           "xAxis": {
             "show": true
           },
-          "xBucketNumber": null,
           "xBucketSize": "2m",
           "yAxis": {
-            "decimals": null,
             "format": "dB",
             "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true,
-            "splitFactor": null
+            "show": true
           },
           "yBucketBound": "auto",
-          "yBucketNumber": null,
           "yBucketSize": 2
         }
       ],
@@ -4682,7 +4563,6 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4692,7 +4572,6 @@
       "id": 1676,
       "panels": [
         {
-          "datasource": null,
           "description": "Wireless registration table entry count",
           "fieldConfig": {
             "defaults": {
@@ -4716,7 +4595,7 @@
             "h": 4,
             "w": 3,
             "x": 0,
-            "y": 53
+            "y": 4
           },
           "id": 1646,
           "options": {
@@ -4734,7 +4613,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -4747,13 +4626,10 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "CAPsMAN client count",
           "type": "stat"
         },
         {
-          "datasource": null,
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -4881,10 +4757,17 @@
             "h": 8,
             "w": 11,
             "x": 3,
-            "y": 53
+            "y": 4
           },
           "id": 1681,
           "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
             "showHeader": true,
             "sortBy": [
               {
@@ -4893,7 +4776,7 @@
               }
             ]
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -5010,7 +4893,6 @@
           "type": "table"
         },
         {
-          "datasource": null,
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5091,14 +4973,21 @@
             "h": 8,
             "w": 10,
             "x": 14,
-            "y": 53
+            "y": 4
           },
           "id": 1679,
           "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
             "showHeader": true,
             "sortBy": []
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -5230,7 +5119,6 @@
           "type": "table"
         },
         {
-          "datasource": null,
           "description": "Wireless CAPSMAN remote-cap entry count",
           "fieldConfig": {
             "defaults": {
@@ -5254,7 +5142,7 @@
             "h": 4,
             "w": 3,
             "x": 0,
-            "y": 57
+            "y": 8
           },
           "id": 1680,
           "options": {
@@ -5272,7 +5160,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -5285,13 +5173,10 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "remote-cap entry count",
           "type": "stat"
         },
         {
-          "datasource": null,
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5513,10 +5398,17 @@
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 61
+            "y": 12
           },
           "id": 1678,
           "options": {
+            "footer": {
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
             "showHeader": true,
             "sortBy": [
               {
@@ -5525,7 +5417,7 @@
               }
             ]
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -5841,12 +5733,742 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 53
+      },
+      "id": 1705,
+      "panels": [
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 0,
+            "y": 5
+          },
+          "id": 1713,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "name"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GSsid{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{mtxrWl60GSsid}}",
+              "refId": "A"
+            }
+          ],
+          "title": "ssid",
+          "type": "stat"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 4,
+            "y": 5
+          },
+          "id": 1706,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GFreq{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Frequency",
+          "type": "stat"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "disconnected"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "connected"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "dark-red",
+                    "value": null
+                  },
+                  {
+                    "color": "#299c46",
+                    "value": 1
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 8,
+            "y": 5
+          },
+          "id": 1707,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GConnected{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Connected",
+          "type": "stat"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [
+                {
+                  "options": {
+                    "0": {
+                      "index": 0,
+                      "text": "AP Bridge"
+                    },
+                    "1": {
+                      "index": 1,
+                      "text": "Station Bridge"
+                    },
+                    "2": {
+                      "index": 2,
+                      "text": "Sniff"
+                    },
+                    "3": {
+                      "index": 3,
+                      "text": "Bridge"
+                    }
+                  },
+                  "type": "value"
+                }
+              ],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 12,
+            "y": 5
+          },
+          "id": 1709,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GMode{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Mode",
+          "type": "stat"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 5
+          },
+          "id": 1712,
+          "options": {
+            "legend": {
+              "calcs": [
+                "lastNotNull",
+                "min",
+                "max",
+                "mean"
+              ],
+              "displayMode": "table",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single"
+            }
+          },
+          "pluginVersion": "8.2.1",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GRssi{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "RSSI",
+              "refId": "A"
+            }
+          ],
+          "title": "RSSI",
+          "type": "timeseries"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 2,
+            "x": 0,
+            "y": 9
+          },
+          "id": 1710,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GPhyRate{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "PhyRate",
+          "type": "stat"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 2,
+            "x": 2,
+            "y": 9
+          },
+          "id": 1714,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GTxSector{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "TxSector",
+          "type": "stat"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 2,
+            "x": 4,
+            "y": 9
+          },
+          "id": 1716,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GSignal{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "Signal",
+          "type": "stat"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 2,
+            "x": 6,
+            "y": 9
+          },
+          "id": 1715,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "/.*/",
+              "values": false
+            },
+            "text": {},
+            "textMode": "value_and_name"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GTxSectorInfo{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "TxSectorInfo",
+          "type": "stat"
+        },
+        {
+          "description": "Modulation and Coding Scheme",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 8,
+            "y": 9
+          },
+          "id": 1708,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GMcs{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "A"
+            }
+          ],
+          "title": "MCS (Modulation and Coding Scheme)",
+          "type": "stat"
+        },
+        {
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "#299c46",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "none"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 4,
+            "x": 12,
+            "y": 9
+          },
+          "id": 1711,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "none",
+            "justifyMode": "center",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "text": {},
+            "textMode": "name"
+          },
+          "pluginVersion": "8.3.4",
+          "targets": [
+            {
+              "exemplar": true,
+              "expr": "mtxrWl60GRemote{instance='$instance'}",
+              "format": "time_series",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "legendFormat": "{{mtxrWl60GRemote}}",
+              "refId": "A"
+            }
+          ],
+          "title": "Remote MAC",
+          "type": "stat"
+        }
+      ],
+      "title": "W60G",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 54
       },
       "id": 1673,
       "panels": [
@@ -5862,10 +6484,12 @@
             "TX CCQ - Tilda": "#ff2e63"
           },
           "bars": false,
-          "cacheTimeout": null,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Signal Strength: signal strength in dBm (if first ppp-client modem supports)\n\nModem Signal: signal EC/IO in dB (if first ppp-client modem supports)",
           "fill": 1,
           "fillGradient": 0,
@@ -5873,7 +6497,7 @@
             "h": 7,
             "w": 6,
             "x": 0,
-            "y": 54
+            "y": 6
           },
           "hiddenSeries": false,
           "id": 1640,
@@ -5898,7 +6522,7 @@
             "alertThreshold": true
           },
           "percentage": false,
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -5979,9 +6603,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "Modem",
           "tooltip": {
             "shared": true,
@@ -5990,29 +6612,21 @@
           },
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
-              "decimals": null,
               "format": "dBm",
               "label": "",
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
-              "decimals": null,
               "format": "dB",
               "label": "",
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             }
           ],
@@ -6022,7 +6636,6 @@
           }
         },
         {
-          "datasource": null,
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6047,7 +6660,7 @@
             "h": 7,
             "w": 4,
             "x": 6,
-            "y": 54
+            "y": 6
           },
           "id": 1674,
           "options": {
@@ -6065,7 +6678,7 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.2.1",
+          "pluginVersion": "8.3.4",
           "targets": [
             {
               "exemplar": true,
@@ -6077,8 +6690,6 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "USB Power Reset",
           "type": "stat"
         }
@@ -6088,18 +6699,19 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 55
       },
       "id": 1281,
       "panels": [
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6153,7 +6765,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 55
+            "y": 7
           },
           "id": 1268,
           "links": [],
@@ -6211,14 +6823,14 @@
               "refId": "C"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "All Simple Queue",
           "type": "timeseries"
         },
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Showing values > 0",
           "fieldConfig": {
             "defaults": {
@@ -6276,7 +6888,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 61
+            "y": 13
           },
           "id": 1282,
           "links": [],
@@ -6348,8 +6960,6 @@
               "refId": "F"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Queue $queuesimple_name",
           "type": "timeseries"
         }
@@ -6359,18 +6969,19 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 55
+        "y": 56
       },
       "id": 1548,
       "panels": [
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6423,7 +7034,7 @@
             "h": 6,
             "w": 12,
             "x": 0,
-            "y": 56
+            "y": 8
           },
           "id": 1510,
           "links": [],
@@ -6484,14 +7095,14 @@
               "refId": "D"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "All Tree Queue",
           "type": "timeseries"
         },
         {
-          "cacheTimeout": null,
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6544,7 +7155,7 @@
             "h": 6,
             "w": 12,
             "x": 12,
-            "y": 56
+            "y": 8
           },
           "id": 1549,
           "links": [],
@@ -6605,8 +7216,6 @@
               "refId": "E"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Tree Queue $queuetree_name / $queuetree_parent / $queuetree_flow",
           "type": "timeseries"
         }
@@ -6616,17 +7225,19 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 56
+        "y": 57
       },
       "id": 1338,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6677,9 +7288,9 @@
           },
           "gridPos": {
             "h": 11,
-            "w": 6,
+            "w": 8,
             "x": 0,
-            "y": 57
+            "y": 9
           },
           "id": 1339,
           "options": {
@@ -6798,8 +7409,6 @@
               "refId": "J"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Interface \"$Interface\"",
           "type": "timeseries"
         }
@@ -6809,17 +7418,19 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 57
+        "y": 58
       },
       "id": 1285,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6901,9 +7512,9 @@
           },
           "gridPos": {
             "h": 7,
-            "w": 6,
+            "w": 8,
             "x": 0,
-            "y": 58
+            "y": 10
           },
           "id": 1286,
           "options": {
@@ -6945,8 +7556,6 @@
               "refId": "B"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Traffic \"$Interface\"",
           "type": "timeseries"
         }
@@ -6955,8 +7564,8 @@
       "type": "row"
     }
   ],
-  "refresh": "5s",
-  "schemaVersion": 31,
+  "refresh": "10s",
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [
     "prometheus",
@@ -6973,8 +7582,6 @@
           "text": "Prometheus",
           "value": "Prometheus"
         },
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": false,
         "label": "datasource",
@@ -6988,15 +7595,14 @@
         "type": "datasource"
       },
       {
-        "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(ifHCInOctets,  job)",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "Job",
         "options": [],
@@ -7014,15 +7620,14 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "query_result(ifInOctets{job=\"snmp-exporter\"})",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "instance",
         "options": [],
@@ -7040,12 +7645,12 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(ifHighSpeed{instance='$instance'},ifIndex)",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": false,
         "label": "",
@@ -7068,13 +7673,13 @@
       {
         "allValue": "",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "query_result(sort(ifIndex{ifName=~'^(ether).+',instance='$instance'}) or sort(ifIndex{ifName=~'^(sfp|wlan).+',instance='$instance'}) or sort(ifIndex{ifName=~'^bridge.+',instance='$instance'}) or  sort(ifIndex{ifName!~'^(ether|bridge).+',instance='$instance'}) )",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": false,
         "name": "Interface",
         "options": [],
@@ -7092,15 +7697,14 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "query_result(ifHCInOctets{ifName=\"$Interface\",instance=\"$instance\"})",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": false,
-        "label": null,
         "multi": false,
         "name": "desc",
         "options": [],
@@ -7120,10 +7724,11 @@
       {
         "allValue": "Null",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "query_result((mtxrQueueSimplePacketsIn * on (mtxrQueueSimpleIndex) group_left(mtxrQueueSimpleName) mtxrQueueSimpleName{instance='$instance',}))",
-        "description": null,
-        "error": null,
         "hide": 2,
         "includeAll": true,
         "label": "",
@@ -7146,10 +7751,11 @@
       {
         "allValue": "Null",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "query_result((mtxrQueueTreePackets * on (mtxrQueueTreeIndex) group_left(mtxrQueueTreeName) mtxrQueueTreeName{instance='$instance',}))",
-        "description": null,
-        "error": null,
         "hide": 1,
         "includeAll": true,
         "label": "",
@@ -7172,10 +7778,11 @@
       {
         "allValue": "Null",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "query_result((mtxrQueueTreeParentIndex * on (mtxrQueueTreeIndex) group_left(mtxrQueueTreeName) mtxrQueueTreeName{instance='$instance',}))",
-        "description": null,
-        "error": null,
         "hide": 1,
         "includeAll": true,
         "label": "",
@@ -7198,10 +7805,11 @@
       {
         "allValue": "",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "query_result((mtxrQueueTreeParentIndex * on (mtxrQueueTreeName) group_left(mtxrQueueTreeIndex) mtxrQueueTreeIndex{instance='$instance',}))",
-        "description": null,
-        "error": null,
         "hide": 1,
         "includeAll": true,
         "label": "",
@@ -7253,7 +7861,8 @@
     ]
   },
   "timezone": "",
-  "title": "Mikrotik snmp prometheus",
-  "uid": "nR3NRDGnz",
-  "version": 8
+  "title": "Mikrotik monitoring",
+  "uid": "nR3NRDGaz",
+  "version": 1,
+  "weekStart": ""
 }
