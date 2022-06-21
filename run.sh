@@ -4,10 +4,10 @@
 #   You can also pass some arguments to script to set some these options:
 #   
 #       --config: change the user and password to grafana and specify the mikrotik IP address
-#        stop: stop docker containers
+#       --stop: stop docker containers
 #   
 #   For example:
-#       sh run.sh --config
+#       bash run.sh --config
 #   
 ############################################################################
 
@@ -15,6 +15,8 @@ set -e
 
 REPO=Grafana-Mikrotik
 ENV_FILE=${ENV_FILE:-.env}
+ENV_FILE_GF=${ENV_FILE_GF:-.grafana}
+ENV_FILE_PROMETHEUS=${ENV_FILE_PROMETHEU:-.prometheus}
 
 #? Colors
 RED='\033[31m'
@@ -94,7 +96,7 @@ clone_git() {
 
 router_ip() {
     if [[ "${CONFIG}" = yes ]]; then
-        IP=$(grep -R 'MIKROTIK_IP' "${ENV_FILE}" | cut -d= -f2)
+        IP=$(grep -R 'MIKROTIK_IP' "${ENV_FILE_PROMETHEUS}" 2>&1 | cut -d= -f2)
         echo -e "\n${BLUE}===================================="
         echo -e "\n${BOLD}Prometheus${RESET}\n"
         if ask "Change target mikrotik IP address ? (current ${IP})" Y; then
@@ -102,12 +104,12 @@ router_ip() {
             if [ -d "./${REPO}" ]; then
                 sed -ri -e '/mikrotik_ip/s/(- ).*( #.*)/\1'"${IP}"'\2/g' \
                     ${REPO}/prometheus/prometheus.yml
-                sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"$IP"'/g' "${ENV_FILE}"
+                sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"$IP"'/g' "${ENV_FILE_PROMETHEUS}"
                 echo -e "\n${GREEN}... Prometheus target IP changed to ${IP}"
             else
                 sed -ri -e '/mikrotik_ip/s/(- ).*( #.*)/\1'"${IP}"'\2/g' \
                     ./prometheus/prometheus.yml
-                sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"${IP}"'/g' "${ENV_FILE}"
+                sed -ri -e 's/^(MIKROTIK_IP=)(.*)$/\1'"${IP}"'/g' "${ENV_FILE_PROMETHEUS}"
                 echo -e "\n${GREEN}... Prometheus target IP changed to ${IP}"
             fi
             return
@@ -145,8 +147,8 @@ grafana_credentials() {
             read -rp 'Enter grafana Username: ' GF_USER
             read -rsp 'Enter grafana Password: ' GF_PASSWD
 
-            sed -ri -e 's/^(GF_ADMIN_USER=)(.*)$/\1'"${GF_USER}"'/g' "${ENV_FILE}"
-            sed -ri -e 's/^(GF_ADMIN_PASSWORD=)(.*)$/\1'"${GF_PASSWD}"'/g' "${ENV_FILE}"
+            sed -ri -e 's/^(GF_SECURITY_ADMIN_USER=)(.*)$/\1'"${GF_USER}"'/g' "${ENV_FILE_GF}"
+            sed -ri -e 's/^(GF_SECURITY_ADMIN_PASSWORD=)(.*)$/\1'"${GF_PASSWD}"'/g' "${ENV_FILE_GF}"
         else
             echo -e "Default Grafana:
             User: ${YELLOW}admin${RESET}
@@ -156,19 +158,19 @@ grafana_credentials() {
     fi
 }
 
-docker() {
+docker-cmd() {
     if [[ "${STOP}" = yes ]]; then
         if [ -d "./${REPO}" ]; then
-            cd ${REPO} && docker-compose down
+            cd ${REPO} && docker compose down
         else
-            docker-compose down
+            docker compose down
         fi
     else
         if [[ -d "./${REPO}" ]]; then
-            cd ${REPO} && docker-compose up -d
+            cd ${REPO} && docker compose up -d
             print_success
         else
-            docker-compose up -d
+            docker compose up -d
             print_success
         fi
     fi
@@ -187,7 +189,7 @@ main() {
         case $1 in
         --help) HELP=yes ;;
         --config) CONFIG=yes ;;
-        stop) STOP=yes ;;
+        --stop) STOP=yes ;;
         esac
         shift
     done
@@ -195,7 +197,7 @@ main() {
     help
 
     command_exists git
-    command_exists docker-compose
+    command_exists docker
 
     #? init
     if [[ -d "./${REPO}" ]]; then
@@ -212,7 +214,7 @@ main() {
     # Change UID:GID prometheus container to current user
     sed -ri -e 's/^(CURRENT_USER=)(.*)$/\1'"$(id -u)\:$(id -g)"'/g' "${ENV_FILE}"
 
-    docker
+    docker-cmd
 }
 
 main "$@"
