@@ -2,25 +2,23 @@ version: '3.9'
 
 services:
   grafana:
-    image: grafana/grafana:8.3.4
+    image: grafana/grafana:9.0.0
+    env_file:
+      - .grafana
     container_name: mk_grafana
     restart: always
     volumes:
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     ports:
       - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=${GF_ADMIN_USER}
-      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD}
-      - GF_USERS_ALLOW_SIGN_UP=false
   
   prometheus:
     image: prom/prometheus
+    env_file:
+      - .prometheus
     user: ${CURRENT_USER}
     container_name: mk_prometheus
     restart: always
-    environment:
-      - MIKROTIK_IP=${MIKROTIK_IP}
     volumes:
       - ./prometheus/:/etc/prometheus
       - ./prometheus/data/:/prometheus
@@ -28,9 +26,11 @@ services:
       - "9090:9090"
 
   snmp_exporter:
-    image: mashinkopochinko/snmp_exporter_mikrotik
+    image: prom/snmp-exporter
     container_name: mk_snmp_exporter
     restart: always
+    volumes:
+      - ./snmp/:/etc/snmp_exporter/
     ports:
       - "9116:9116"
     depends_on:
