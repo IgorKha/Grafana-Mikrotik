@@ -202,9 +202,13 @@ main() {
     #? init
     if [[ -d "./${REPO}" ]]; then
         ENV_FILE=${REPO}/.env
+        ENV_FILE_GF=${REPO}/.grafana
+        ENV_FILE_PROMETHEUS=${REPO}/.prometheus
     elif [[ ! -e ${ENV_FILE} ]]; then
         clone_git
-        ENV_FILE=${REPO}/.env ;
+        ENV_FILE=${REPO}/.env
+        ENV_FILE_GF=${REPO}/.grafana
+        ENV_FILE_PROMETHEUS=${REPO}/.prometheus
     fi
 
     router_ip
