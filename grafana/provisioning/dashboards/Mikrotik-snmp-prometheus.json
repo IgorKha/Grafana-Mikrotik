@@ -477,6 +477,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "The current operational state of the device described by this row of the table. A value unknown(1) indicates that the current state of the device is unknown. running(2) indicates that the device is up and running and that no unusual error conditions are known. The warning(3) state indicates that agent has been informed of an unusual error condition by the operational software (e.g., a disk device driver) but that the device is still 'operational'. An example would be a high number of soft errors on a disk. A value of testing(4), indicates that the device is not available for use because it is in the testing state. The state of down(5) is used only when the agent has been informed that the device is not available for any use.",
       "fieldConfig": {
         "defaults": {
@@ -575,6 +579,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "The number of errors detected on this device",
       "fieldConfig": {
         "defaults": {
@@ -690,7 +698,11 @@
         }
       ],
       "title": "System identity",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "",
@@ -747,7 +759,11 @@
         }
       ],
       "title": "Serial Number",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "",
@@ -804,7 +820,11 @@
         }
       ],
       "title": "Model",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "datasource": {
@@ -924,7 +944,11 @@
         }
       ],
       "title": "Board ver",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "",
@@ -982,7 +1006,11 @@
         }
       ],
       "title": "Package ver",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "",
@@ -1039,7 +1067,11 @@
         }
       ],
       "title": "Board Name",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "",
@@ -1096,7 +1128,11 @@
         }
       ],
       "title": "Software ID",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "datasource": {
@@ -1234,7 +1270,11 @@
         }
       ],
       "title": "CPU Load",
-      "type": "gauge"
+      "type": "gauge",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "datasource": {
@@ -1467,7 +1507,11 @@
         }
       ],
       "title": "CPU Temp",
-      "type": "gauge"
+      "type": "gauge",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "datasource": {
@@ -1648,7 +1692,11 @@
         }
       ],
       "title": "CPU frequency",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "",
@@ -1705,7 +1753,11 @@
         }
       ],
       "title": "Active Fan",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "Wireless registration table entry count",
@@ -1763,7 +1815,11 @@
         }
       ],
       "title": "Wi-Fi client count",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "datasource": {
@@ -1936,7 +1992,11 @@
         }
       ],
       "title": "POE Status",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "",
@@ -1995,7 +2055,11 @@
         }
       ],
       "title": "POE Power",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "fieldConfig": {
@@ -2053,7 +2117,11 @@
         }
       ],
       "title": "POE Current",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "fieldConfig": {
@@ -2111,7 +2179,11 @@
         }
       ],
       "title": "POE Voltage",
-      "type": "stat"
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "",
@@ -2206,7 +2278,11 @@
         }
       ],
       "title": "Network Traffic Basic",
-      "type": "timeseries"
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "description": "Status link/states: The current operational state of the interface",
@@ -2809,7 +2885,11 @@
           }
         }
       ],
-      "type": "table"
+      "type": "table",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "aliasColors": {
@@ -3082,6 +3162,10 @@
       ],
       "yaxis": {
         "align": false
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
       }
     },
     {
@@ -3278,6 +3362,10 @@
       ],
       "yaxis": {
         "align": false
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
       }
     },
     {
@@ -3516,7 +3604,11 @@
           }
         }
       ],
-      "type": "table"
+      "type": "table",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      }
     },
     {
       "collapsed": true,
@@ -4000,7 +4092,11 @@
             }
           ],
           "title": "Wi-Fi frequency",
-          "type": "timeseries"
+          "type": "timeseries",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "Wireless registration table. It is indexed by remote mac-address and local interface index.\n\nMeasured in dB, if value does not exist it is indicated with 0",
@@ -4431,7 +4527,11 @@
               }
             }
           ],
-          "type": "table"
+          "type": "table",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "cards": {},
@@ -4627,7 +4727,11 @@
             }
           ],
           "title": "CAPsMAN client count",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -4890,7 +4994,11 @@
               }
             }
           ],
-          "type": "table"
+          "type": "table",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -5116,7 +5224,11 @@
               }
             }
           ],
-          "type": "table"
+          "type": "table",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "Wireless CAPSMAN remote-cap entry count",
@@ -5174,7 +5286,11 @@
             }
           ],
           "title": "remote-cap entry count",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -5725,7 +5841,11 @@
               }
             }
           ],
-          "type": "table"
+          "type": "table",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         }
       ],
       "title": "CAPsMAN",
@@ -5798,7 +5918,11 @@
             }
           ],
           "title": "ssid",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -5857,7 +5981,11 @@
             }
           ],
           "title": "Frequency",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -5934,7 +6062,11 @@
             }
           ],
           "title": "Connected",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6015,7 +6147,11 @@
             }
           ],
           "title": "Mode",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6102,7 +6238,11 @@
             }
           ],
           "title": "RSSI",
-          "type": "timeseries"
+          "type": "timeseries",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6161,7 +6301,11 @@
             }
           ],
           "title": "PhyRate",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6220,7 +6364,11 @@
             }
           ],
           "title": "TxSector",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6279,7 +6427,11 @@
             }
           ],
           "title": "Signal",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6338,7 +6490,11 @@
             }
           ],
           "title": "TxSectorInfo",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "Modulation and Coding Scheme",
@@ -6397,7 +6553,11 @@
             }
           ],
           "title": "MCS (Modulation and Coding Scheme)",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6456,7 +6616,11 @@
             }
           ],
           "title": "Remote MAC",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         }
       ],
       "title": "W60G",
@@ -6691,7 +6855,11 @@
             }
           ],
           "title": "USB Power Reset",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         }
       ],
       "title": "Modem",
