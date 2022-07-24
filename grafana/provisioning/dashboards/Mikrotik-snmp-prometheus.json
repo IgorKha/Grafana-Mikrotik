@@ -4092,7 +4092,11 @@
             }
           ],
           "title": "Wi-Fi frequency",
-          "type": "timeseries"
+          "type": "timeseries",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "Wireless registration table. It is indexed by remote mac-address and local interface index.\n\nMeasured in dB, if value does not exist it is indicated with 0",
@@ -4523,7 +4527,11 @@
               }
             }
           ],
-          "type": "table"
+          "type": "table",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "cards": {},
@@ -4719,7 +4727,11 @@
             }
           ],
           "title": "CAPsMAN client count",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -4982,7 +4994,11 @@
               }
             }
           ],
-          "type": "table"
+          "type": "table",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -5208,7 +5224,11 @@
               }
             }
           ],
-          "type": "table"
+          "type": "table",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "Wireless CAPSMAN remote-cap entry count",
@@ -5266,7 +5286,11 @@
             }
           ],
           "title": "remote-cap entry count",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -5817,7 +5841,11 @@
               }
             }
           ],
-          "type": "table"
+          "type": "table",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         }
       ],
       "title": "CAPsMAN",
@@ -5890,7 +5918,11 @@
             }
           ],
           "title": "ssid",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -5949,7 +5981,11 @@
             }
           ],
           "title": "Frequency",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6026,7 +6062,11 @@
             }
           ],
           "title": "Connected",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6107,7 +6147,11 @@
             }
           ],
           "title": "Mode",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6194,7 +6238,11 @@
             }
           ],
           "title": "RSSI",
-          "type": "timeseries"
+          "type": "timeseries",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6253,7 +6301,11 @@
             }
           ],
           "title": "PhyRate",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6312,7 +6364,11 @@
             }
           ],
           "title": "TxSector",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6371,7 +6427,11 @@
             }
           ],
           "title": "Signal",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6430,7 +6490,11 @@
             }
           ],
           "title": "TxSectorInfo",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "Modulation and Coding Scheme",
@@ -6489,7 +6553,11 @@
             }
           ],
           "title": "MCS (Modulation and Coding Scheme)",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "description": "",
@@ -6548,7 +6616,11 @@
             }
           ],
           "title": "Remote MAC",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         }
       ],
       "title": "W60G",
@@ -6783,7 +6855,11 @@
             }
           ],
           "title": "USB Power Reset",
-          "type": "stat"
+          "type": "stat",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         }
       ],
       "title": "Modem",
