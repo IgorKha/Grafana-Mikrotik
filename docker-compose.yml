@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   grafana:
-    image: grafana/grafana:9.0.0
+    image: grafana/grafana:9.0.5
     env_file:
       - .grafana
     container_name: mk_grafana

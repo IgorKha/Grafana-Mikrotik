@@ -9,7 +9,7 @@
       "pluginName": "Prometheus"
     }
   ],
-  "__elements": [],
+  "__elements": {},
   "__requires": [
     {
       "type": "panel",
@@ -21,7 +21,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.3.4"
+      "version": "9.0.5"
     },
     {
       "type": "panel",
@@ -64,7 +64,10 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -79,13 +82,12 @@
       }
     ]
   },
-  "description": "Mikrotik snmp monitoring (prometheus) 8.3.4",
+  "description": "Mikrotik snmp monitoring (prometheus) 9.0.5",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 14420,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1643643529234,
   "links": [
     {
       "asDropdown": false,
@@ -116,6 +118,10 @@
   "panels": [
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -196,9 +202,13 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.3.4",
+          "pluginVersion": "9.0.5",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "snmp_scrape_duration_seconds{instance='$instance'}",
               "instant": true,
@@ -282,9 +292,13 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.3.4",
+          "pluginVersion": "9.0.5",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "snmp_scrape_walk_duration_seconds{instance='$instance'}",
               "instant": true,
@@ -356,9 +370,13 @@
             "text": {},
             "textMode": "auto"
           },
-          "pluginVersion": "8.3.4",
+          "pluginVersion": "9.0.5",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "snmp_scrape_pdus_returned{instance='$instance'}",
               "instant": true,
@@ -371,11 +389,24 @@
           "type": "stat"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "SNMP",
       "type": "row"
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -384,6 +415,15 @@
       },
       "id": 1218,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "System",
       "type": "row"
     },
@@ -463,9 +503,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "sysUpTime{instance='$instance'}/100",
           "interval": "",
@@ -564,9 +608,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "hrDeviceStatus{instance='$instance', hrDeviceIndex=\"1\"}",
           "instant": true,
@@ -628,9 +676,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "hrDeviceErrors{instance='$instance', hrDeviceIndex=\"1\"}",
           "hide": false,
@@ -644,6 +696,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -685,9 +741,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "sysIdentity{instance='$instance'}",
           "hide": false,
@@ -698,13 +758,13 @@
         }
       ],
       "title": "System identity",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -746,9 +806,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrSerialNumber{instance='$instance'}",
           "hide": false,
@@ -759,13 +823,13 @@
         }
       ],
       "title": "Serial Number",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -807,9 +871,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "sysDescr{instance='$instance'}",
           "hide": false,
@@ -820,11 +888,7 @@
         }
       ],
       "title": "Model",
-      "type": "stat",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      }
+      "type": "stat"
     },
     {
       "datasource": {
@@ -875,9 +939,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "time()-(hrSystemDate{instance='$instance'})",
           "instant": true,
@@ -890,6 +958,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -930,9 +1002,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrFirmwareVersion{instance='$instance'}",
           "format": "time_series",
@@ -944,13 +1020,13 @@
         }
       ],
       "title": "Board ver",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -992,9 +1068,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrLicVersion{instance='$instance'}",
           "format": "time_series",
@@ -1006,13 +1086,13 @@
         }
       ],
       "title": "Package ver",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1054,9 +1134,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrBoardName{instance='$instance'}",
           "hide": false,
@@ -1067,13 +1151,13 @@
         }
       ],
       "title": "Board Name",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1115,9 +1199,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrLicSoftwareId{instance='$instance'}",
           "hide": false,
@@ -1128,11 +1216,7 @@
         }
       ],
       "title": "Software ID",
-      "type": "stat",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      }
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1193,9 +1277,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrNote{instance='$instance'}",
           "instant": true,
@@ -1208,6 +1296,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1258,9 +1350,13 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "avg(hrProcessorLoad{instance='$instance'})",
           "instant": true,
@@ -1270,11 +1366,7 @@
         }
       ],
       "title": "CPU Load",
-      "type": "gauge",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      }
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -1343,9 +1435,13 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "(hrStorageUsed{hrStorageIndex='65536',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='65536',instance='$instance'})",
           "instant": true,
@@ -1424,9 +1520,13 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "(hrStorageUsed{hrStorageIndex='131072',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='131072',instance='$instance'})",
           "instant": true,
@@ -1439,6 +1539,10 @@
       "type": "gauge"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1495,9 +1599,13 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrHlProcessorTemperature{instance='$instance'}/10 or mtxrHlTemperature{instance='$instance'}/10",
           "instant": true,
@@ -1507,11 +1615,7 @@
         }
       ],
       "title": "CPU Temp",
-      "type": "gauge",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      }
+      "type": "gauge"
     },
     {
       "datasource": {
@@ -1585,13 +1689,18 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.2.1",
       "repeatDirection": "h",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "hrProcessorLoad{instance='$instance'}",
           "interval": "",
@@ -1599,6 +1708,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrHlTemperature{instance='$instance'}/10",
           "format": "time_series",
@@ -1609,6 +1722,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "(hrStorageUsed{hrStorageIndex='65536',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='65536',instance='$instance'})",
           "hide": false,
@@ -1617,6 +1734,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "(hrStorageUsed{hrStorageIndex='131072',instance='$instance'} * 100 )/(hrStorageSize{hrStorageIndex='131072',instance='$instance'})",
           "hide": false,
@@ -1625,6 +1746,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrHlVoltage{instance='$instance'}/10",
           "hide": false,
@@ -1637,6 +1762,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1679,9 +1808,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrHlProcessorFrequency{instance='$instance'}",
           "hide": false,
@@ -1692,13 +1825,13 @@
         }
       ],
       "title": "CPU frequency",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1740,9 +1873,13 @@
         "text": {},
         "textMode": "name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrHlActiveFan{instance='$instance'}",
           "hide": false,
@@ -1753,13 +1890,13 @@
         }
       ],
       "title": "Active Fan",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "Wireless registration table entry count",
       "fieldConfig": {
         "defaults": {
@@ -1801,9 +1938,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrWlRtabEntryCount{instance='$instance'}",
           "format": "time_series",
@@ -1815,11 +1956,7 @@
         }
       ],
       "title": "Wi-Fi client count",
-      "type": "stat",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      }
+      "type": "stat"
     },
     {
       "datasource": {
@@ -1884,9 +2021,13 @@
         "text": {},
         "textMode": "value_and_name"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrLicLevel{instance='$instance'}",
           "interval": "",
@@ -1894,6 +2035,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrLicUpgradableTo{instance='$instance'}",
           "hide": false,
@@ -1906,6 +2051,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1978,9 +2127,13 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrPOEStatus{instance='$instance'}",
           "format": "time_series",
@@ -1992,13 +2145,13 @@
         }
       ],
       "title": "POE Status",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2041,9 +2194,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrPOEPower{instance='$instance'}",
           "format": "time_series",
@@ -2055,13 +2212,13 @@
         }
       ],
       "title": "POE Power",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2103,9 +2260,13 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrPOECurrent{instance='$instance'}",
           "format": "time_series",
@@ -2117,13 +2278,13 @@
         }
       ],
       "title": "POE Current",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2165,9 +2326,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrPOEVoltage{instance='$instance'}",
           "format": "time_series",
@@ -2179,13 +2344,13 @@
         }
       ],
       "title": "POE Voltage",
-      "type": "stat",
+      "type": "stat"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2252,12 +2417,17 @@
           "placement": "right"
         },
         "tooltip": {
-          "mode": "multi"
+          "mode": "multi",
+          "sort": "none"
         }
       },
       "pluginVersion": "8.2.1",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(ifHCInOctets{ifName=~'$Interface',instance='$instance'}[$__rate_interval])*8",
           "format": "time_series",
@@ -2268,6 +2438,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "-irate(ifHCOutOctets{ifName=~'$Interface',instance='$instance'}[$__rate_interval])*8",
           "hide": false,
@@ -2278,13 +2452,13 @@
         }
       ],
       "title": "Network Traffic Basic",
-      "type": "timeseries",
+      "type": "timeseries"
+    },
+    {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
-      }
-    },
-    {
+      },
       "description": "Status link/states: The current operational state of the interface",
       "fieldConfig": {
         "defaults": {
@@ -2292,8 +2466,10 @@
             "mode": "thresholds"
           },
           "custom": {
+            "align": "auto",
             "displayMode": "color-text",
-            "filterable": false
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -2671,9 +2847,13 @@
           }
         ]
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "ifPhysAddress{instance='$instance'}",
           "format": "table",
@@ -2683,6 +2863,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "ifOperStatus{instance='$instance'}",
           "format": "table",
@@ -2693,6 +2877,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrInterfaceStatsRxBytes{instance='$instance'}",
           "format": "table",
@@ -2703,6 +2891,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrInterfaceStatsTxBytes{instance='$instance'}",
           "format": "table",
@@ -2713,6 +2905,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "ifSpeed{instance='$instance'}",
           "format": "table",
@@ -2723,6 +2919,10 @@
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrInterfaceStatsLinkDowns{instance='$instance'}",
           "format": "table",
@@ -2733,6 +2933,10 @@
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "ifMtu{instance='$instance'}",
           "format": "table",
@@ -2743,6 +2947,10 @@
           "refId": "G"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "ifType_info{instance='$instance'}",
           "format": "table",
@@ -2753,6 +2961,10 @@
           "refId": "H"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrPOEInterfaceIndex{instance='$instance'}",
           "format": "table",
@@ -2763,6 +2975,10 @@
           "refId": "I"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "ifAlias{instance='$instance'}",
           "format": "table",
@@ -2885,11 +3101,7 @@
           }
         }
       ],
-      "type": "table",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      }
+      "type": "table"
     },
     {
       "aliasColors": {
@@ -2898,6 +3110,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Showing values > 0",
       "fill": 1,
       "fillGradient": 0,
@@ -2929,7 +3145,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2939,6 +3155,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxControl{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -2948,6 +3168,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxDeferred{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -2957,6 +3181,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxCollision{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -2968,6 +3196,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxDrop{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -2979,6 +3211,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxExcessiveCollision{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -2990,6 +3226,10 @@
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxExcessiveDeferred{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3001,6 +3241,10 @@
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxFCSError{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3012,6 +3256,10 @@
           "refId": "G"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxFragment{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3023,6 +3271,10 @@
           "refId": "H"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxJabber{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3034,6 +3286,10 @@
           "refId": "I"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxLateCollision{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3045,6 +3301,10 @@
           "refId": "J"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxMultipleCollision{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3056,6 +3316,10 @@
           "refId": "K"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxPause{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3067,6 +3331,10 @@
           "refId": "L"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxPauseHonored{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3078,6 +3346,10 @@
           "refId": "M"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxSingleCollision{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3089,6 +3361,10 @@
           "refId": "N"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxTooLong{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3100,6 +3376,10 @@
           "refId": "O"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxTooShort{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3111,6 +3391,10 @@
           "refId": "P"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxTotalCollision{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3122,6 +3406,10 @@
           "refId": "Q"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsTxUnderrun{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "format": "time_series",
@@ -3162,10 +3450,6 @@
       ],
       "yaxis": {
         "align": false
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
       }
     },
     {
@@ -3175,6 +3459,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Showing values > 0",
       "fill": 1,
       "fillGradient": 0,
@@ -3206,7 +3494,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -3216,6 +3504,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxAlignError{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3225,6 +3517,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxCarrierError{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3234,6 +3530,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxControl{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3243,6 +3543,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxDrop{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3252,6 +3556,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxFCSError{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3261,6 +3569,10 @@
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxFragment{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3270,6 +3582,10 @@
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxJabber{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3279,6 +3595,10 @@
           "refId": "G"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxLengthError{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3288,6 +3608,10 @@
           "refId": "H"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxOverflow{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3297,6 +3621,10 @@
           "refId": "I"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxPause{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3306,6 +3634,10 @@
           "refId": "J"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxTooLong{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3315,6 +3647,10 @@
           "refId": "K"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxTooShort{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3324,6 +3660,10 @@
           "refId": "L"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "irate(mtxrInterfaceStatsRxUnknownOp{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
           "hide": false,
@@ -3362,13 +3702,13 @@
       ],
       "yaxis": {
         "align": false
-      },
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
       }
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -3376,8 +3716,10 @@
             "mode": "thresholds"
           },
           "custom": {
+            "align": "auto",
             "displayMode": "color-text",
-            "filterable": false
+            "filterable": false,
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -3482,9 +3824,13 @@
           }
         ]
       },
-      "pluginVersion": "8.3.4",
+      "pluginVersion": "9.0.5",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrNeighborInterfaceID{instance='$instance'}",
           "format": "table",
@@ -3494,6 +3840,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrNeighborIdentity{instance='$instance'}",
           "format": "table",
@@ -3504,6 +3854,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrNeighborIpAddress{instance='$instance'}",
           "format": "table",
@@ -3514,6 +3868,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrNeighborMacAddress{instance='$instance'}",
           "format": "table",
@@ -3524,6 +3882,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrNeighborPlatform{instance='$instance'}",
           "format": "table",
@@ -3534,6 +3896,10 @@
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrNeighborSoftwareID{instance='$instance'}",
           "format": "table",
@@ -3544,6 +3910,10 @@
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": true,
           "expr": "mtxrNeighborVersion{instance='$instance'}",
           "format": "table",
@@ -3604,14 +3974,14 @@
           }
         }
       ],
-      "type": "table",
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      }
+      "type": "table"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3730,6 +4100,10 @@
           "steppedLine": false,
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(mtxrWlApOverallTxCCQ{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
               "hide": false,
@@ -3738,6 +4112,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(mtxrWlApNoiseFloor{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
               "format": "time_series",
@@ -3827,8 +4205,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3926,6 +4303,10 @@
           "pluginVersion": "8.2.1",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(mtxrWlApAuthClientCount{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'})",
               "hide": false,
@@ -3934,6 +4315,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrDHCPLeaseCount{instance='$instance'}",
               "hide": false,
@@ -3946,6 +4331,10 @@
           "type": "timeseries"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -3986,8 +4375,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4082,6 +4470,10 @@
           "pluginVersion": "8.2.1",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlApFreq{instance='$instance'}*on(mtxrWlApIndex)group_left(mtxrWlApSsid)mtxrWlApSsid{instance='$instance'}",
               "hide": false,
@@ -4092,13 +4484,13 @@
             }
           ],
           "title": "Wi-Fi frequency",
-          "type": "timeseries",
+          "type": "timeseries"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "Wireless registration table. It is indexed by remote mac-address and local interface index.\n\nMeasured in dB, if value does not exist it is indicated with 0",
           "fieldConfig": {
             "defaults": {
@@ -4114,8 +4506,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               }
@@ -4355,6 +4746,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabAddr{instance='$instance'}",
               "format": "table",
@@ -4365,6 +4760,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabSignalToNoise{instance='$instance'}",
               "format": "table",
@@ -4375,6 +4774,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabStrength{instance='$instance'}",
               "format": "table",
@@ -4385,6 +4788,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabTxBytes{instance='$instance'}",
               "format": "table",
@@ -4395,6 +4802,10 @@
               "refId": "D"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabRxBytes{instance='$instance'}",
               "format": "table",
@@ -4405,6 +4816,10 @@
               "refId": "E"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabTxRate{instance='$instance'}",
               "format": "table",
@@ -4415,6 +4830,10 @@
               "refId": "F"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabRxRate{instance='$instance'}",
               "format": "table",
@@ -4425,6 +4844,10 @@
               "refId": "G"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabUptime{instance='$instance'}",
               "format": "table",
@@ -4527,11 +4950,7 @@
               }
             }
           ],
-          "type": "table",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+          "type": "table"
         },
         {
           "cards": {},
@@ -4569,6 +4988,10 @@
           "reverseYBuckets": false,
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabStrength{instance='$instance'}",
               "hide": false,
@@ -4631,6 +5054,10 @@
           "reverseYBuckets": false,
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlRtabSignalToNoise{instance='$instance'}",
               "hide": false,
@@ -4658,11 +5085,24 @@
           "yBucketSize": 2
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Wireless",
       "type": "row"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4672,6 +5112,10 @@
       "id": 1676,
       "panels": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Wireless registration table entry count",
           "fieldConfig": {
             "defaults": {
@@ -4683,8 +5127,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               }
@@ -4716,6 +5159,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabEntryCount{instance='$instance'}",
               "format": "time_series",
@@ -4727,13 +5174,13 @@
             }
           ],
           "title": "CAPsMAN client count",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -4749,8 +5196,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4883,6 +5329,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRemoteAddress{instance='$instance'}",
               "format": "table",
@@ -4893,6 +5343,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRemoteName{instance='$instance'}",
               "format": "table",
@@ -4903,6 +5357,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRemoteRadios{instance='$instance'}",
               "format": "table",
@@ -4913,6 +5371,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRemoteState{instance='$instance'}",
               "format": "table",
@@ -4994,13 +5456,13 @@
               }
             }
           ],
-          "type": "table",
+          "type": "table"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5016,8 +5478,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5098,6 +5559,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMState{instance='$instance'}",
               "format": "table",
@@ -5108,6 +5573,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRegClientCount{instance='$instance'}",
               "format": "table",
@@ -5118,6 +5587,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMChannel{instance='$instance'}",
               "format": "table",
@@ -5128,6 +5601,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMAuthClientCount{instance='$instance'}",
               "format": "table",
@@ -5138,6 +5615,10 @@
               "refId": "D"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabSsid{instance='$instance'}",
               "format": "table",
@@ -5224,13 +5705,13 @@
               }
             }
           ],
-          "type": "table",
+          "type": "table"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "Wireless CAPSMAN remote-cap entry count",
           "fieldConfig": {
             "defaults": {
@@ -5242,8 +5723,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               }
@@ -5275,6 +5755,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMREntryCount{instance='$instance'}",
               "format": "time_series",
@@ -5286,13 +5770,13 @@
             }
           ],
           "title": "remote-cap entry count",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5308,8 +5792,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5536,6 +6019,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabAddr{instance='$instance'}",
               "format": "table",
@@ -5546,6 +6033,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabEapIdent{instance='$instance'}",
               "format": "table",
@@ -5556,6 +6047,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabRxBytes{instance='$instance'}",
               "format": "table",
@@ -5566,6 +6061,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabRxPackets{instance='$instance'}",
               "format": "table",
@@ -5576,6 +6075,10 @@
               "refId": "D"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabRxRate{instance='$instance'}",
               "format": "table",
@@ -5586,6 +6089,10 @@
               "refId": "E"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabRxStrength{instance='$instance'}",
               "format": "table",
@@ -5596,6 +6103,10 @@
               "refId": "F"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabSsid{instance='$instance'}",
               "format": "table",
@@ -5606,6 +6117,10 @@
               "refId": "G"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabTxBytes{instance='$instance'}",
               "format": "table",
@@ -5616,6 +6131,10 @@
               "refId": "H"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabTxPackets{instance='$instance'}",
               "format": "table",
@@ -5626,6 +6145,10 @@
               "refId": "I"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabTxRate{instance='$instance'}",
               "format": "table",
@@ -5636,6 +6159,10 @@
               "refId": "J"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabTxStrength{instance='$instance'}",
               "format": "table",
@@ -5646,6 +6173,10 @@
               "refId": "K"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWlCMRtabUptime{instance='$instance'}",
               "format": "table",
@@ -5841,11 +6372,16 @@
               }
             }
           ],
-          "type": "table",
+          "type": "table"
+        }
+      ],
+      "targets": [
+        {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
         }
       ],
       "title": "CAPsMAN",
@@ -5853,6 +6389,10 @@
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5862,6 +6402,10 @@
       "id": 1705,
       "panels": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5873,8 +6417,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -5907,6 +6450,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GSsid{instance='$instance'}",
               "format": "time_series",
@@ -5918,13 +6465,13 @@
             }
           ],
           "title": "ssid",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -5936,8 +6483,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -5970,6 +6516,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GFreq{instance='$instance'}",
               "format": "time_series",
@@ -5981,13 +6531,13 @@
             }
           ],
           "title": "Frequency",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6013,8 +6563,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "dark-red",
-                    "value": null
+                    "color": "dark-red"
                   },
                   {
                     "color": "#299c46",
@@ -6051,6 +6600,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GConnected{instance='$instance'}",
               "format": "time_series",
@@ -6062,13 +6615,13 @@
             }
           ],
           "title": "Connected",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6102,8 +6655,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6136,6 +6688,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GMode{instance='$instance'}",
               "format": "time_series",
@@ -6147,13 +6703,13 @@
             }
           ],
           "title": "Mode",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6193,8 +6749,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6227,6 +6782,10 @@
           "pluginVersion": "8.2.1",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GRssi{instance='$instance'}",
               "format": "time_series",
@@ -6238,13 +6797,13 @@
             }
           ],
           "title": "RSSI",
-          "type": "timeseries",
+          "type": "timeseries"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6256,8 +6815,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6290,6 +6848,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GPhyRate{instance='$instance'}",
               "format": "time_series",
@@ -6301,13 +6863,13 @@
             }
           ],
           "title": "PhyRate",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6319,8 +6881,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6353,6 +6914,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GTxSector{instance='$instance'}",
               "format": "time_series",
@@ -6364,13 +6929,13 @@
             }
           ],
           "title": "TxSector",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6382,8 +6947,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6416,6 +6980,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GSignal{instance='$instance'}",
               "format": "time_series",
@@ -6427,13 +6995,13 @@
             }
           ],
           "title": "Signal",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6445,8 +7013,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6479,6 +7046,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GTxSectorInfo{instance='$instance'}",
               "format": "time_series",
@@ -6490,13 +7061,13 @@
             }
           ],
           "title": "TxSectorInfo",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "Modulation and Coding Scheme",
           "fieldConfig": {
             "defaults": {
@@ -6508,8 +7079,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6542,6 +7112,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GMcs{instance='$instance'}",
               "format": "time_series",
@@ -6553,13 +7127,13 @@
             }
           ],
           "title": "MCS (Modulation and Coding Scheme)",
-          "type": "stat",
+          "type": "stat"
+        },
+        {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6571,8 +7145,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6605,6 +7178,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWl60GRemote{instance='$instance'}",
               "format": "time_series",
@@ -6616,11 +7193,16 @@
             }
           ],
           "title": "Remote MAC",
-          "type": "stat",
+          "type": "stat"
+        }
+      ],
+      "targets": [
+        {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
         }
       ],
       "title": "W60G",
@@ -6628,6 +7210,10 @@
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -6750,6 +7336,10 @@
           "steppedLine": false,
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWirelessModemSignalStrength{instance='$instance'}",
               "hide": false,
@@ -6758,6 +7348,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrWirelessModemSignalECIO{instance='$instance'}",
               "hide": false,
@@ -6800,6 +7394,10 @@
           }
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "",
           "fieldConfig": {
             "defaults": {
@@ -6811,8 +7409,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#299c46",
-                    "value": null
+                    "color": "#299c46"
                   }
                 ]
               },
@@ -6845,6 +7442,10 @@
           "pluginVersion": "8.3.4",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "mtxrUSBPowerReset{instance='$instance'}",
               "hide": false,
@@ -6855,11 +7456,16 @@
             }
           ],
           "title": "USB Power Reset",
-          "type": "stat",
+          "type": "stat"
+        }
+      ],
+      "targets": [
+        {
           "datasource": {
             "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
         }
       ],
       "title": "Modem",
@@ -6867,6 +7473,10 @@
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -6920,8 +7530,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -6955,6 +7564,10 @@
           "repeatDirection": "h",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueSimpleBytesIn{instance='$instance'}[$__rate_interval])*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{instance='$instance'})*8 ",
               "instant": false,
@@ -6963,6 +7576,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueSimpleBytesOut{instance='$instance'}[$__rate_interval])*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{instance='$instance'})*8",
               "instant": false,
@@ -6971,6 +7588,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(mtxrQueueSimplePCQQueuesIn{instance='$instance'}*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{instance='$instance'})",
               "hide": false,
@@ -6981,6 +7602,10 @@
               "refId": "D"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(mtxrQueueSimplePCQQueuesOut{instance='$instance'}*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{instance='$instance'})",
               "hide": false,
@@ -7039,8 +7664,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -7079,6 +7703,10 @@
           "repeatDirection": "h",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueSimpleBytesIn{instance='$instance'}[$__rate_interval])*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{mtxrQueueSimpleName='$queuesimple_name', instance='$instance'})*8",
               "instant": false,
@@ -7087,6 +7715,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueSimpleBytesOut{instance='$instance'}[$__rate_interval])*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{mtxrQueueSimpleName='$queuesimple_name', instance='$instance'})*8",
               "instant": false,
@@ -7095,6 +7727,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueSimpleDroppedIn{instance='$instance'}[$__rate_interval])*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{mtxrQueueSimpleName='$queuesimple_name', instance='$instance'})",
               "format": "time_series",
@@ -7104,6 +7740,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueSimpleDroppedOut{instance='$instance'}[$__rate_interval])*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{mtxrQueueSimpleName='$queuesimple_name', instance='$instance'})",
               "hide": false,
@@ -7112,6 +7752,10 @@
               "refId": "D"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(mtxrQueueSimplePCQQueuesIn{instance='$instance'}*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{mtxrQueueSimpleName='$queuesimple_name',instance='$instance'})",
               "hide": false,
@@ -7120,6 +7764,10 @@
               "refId": "E"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(mtxrQueueSimplePCQQueuesOut{instance='$instance'}*on(mtxrQueueSimpleIndex)group_left(mtxrQueueSimpleName)mtxrQueueSimpleName{mtxrQueueSimpleName='$queuesimple_name',instance='$instance'})",
               "hide": false,
@@ -7132,11 +7780,24 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Simple Queue (In/Out/Dropped/PCQ)",
       "type": "row"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -7189,8 +7850,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -7224,6 +7884,10 @@
           "repeatDirection": "h",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueTreeHCBytes{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{instance='$instance'})*8",
               "instant": false,
@@ -7233,6 +7897,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueTreePCQQueues{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{instance='$instance'})",
               "hide": false,
@@ -7243,6 +7911,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueTreeDropped{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{instance='$instance'})",
               "hide": false,
@@ -7253,6 +7925,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueTreePackets{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{instance='$instance'})",
               "hide": false,
@@ -7310,8 +7986,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -7346,6 +8021,10 @@
           "repeatDirection": "h",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueTreeHCBytes{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})*8",
               "instant": false,
@@ -7355,6 +8034,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueTreePCQQueues{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
               "hide": false,
@@ -7365,6 +8048,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueTreeDropped{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
               "hide": false,
@@ -7375,6 +8062,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "(irate(mtxrQueueTreePackets{instance='$instance'}[$__rate_interval])*on(mtxrQueueTreeIndex)group_left(mtxrQueueTreeName)mtxrQueueTreeName{mtxrQueueTreeName='$queuetree_name',instance='$instance'})",
               "hide": false,
@@ -7388,11 +8079,24 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Tree Queue (Bytes/PCQ/Dropped/Packets)",
       "type": "row"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -7445,8 +8149,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -7481,6 +8184,10 @@
           "repeatDirection": "h",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifHCInMulticastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7489,6 +8196,10 @@
               "refId": "K"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "-irate(ifHCOutMulticastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7497,6 +8208,10 @@
               "refId": "L"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifHCInBroadcastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7505,6 +8220,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "-irate(ifHCOutBroadcastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7513,6 +8232,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifHCInUcastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7521,6 +8244,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "-irate(ifHCOutUcastPkts{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7529,6 +8256,10 @@
               "refId": "D"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifInDiscards{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7537,6 +8268,10 @@
               "refId": "E"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifOutDiscards{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7545,6 +8280,10 @@
               "refId": "F"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifInErrors{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7553,6 +8292,10 @@
               "refId": "G"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifOutErrors{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7561,6 +8304,10 @@
               "refId": "H"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifInUnknownProtos{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7569,6 +8316,10 @@
               "refId": "I"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "-irate(ifOutQLen{ifName=~'$Interface',instance='$instance'}[$__rate_interval])",
               "hide": false,
@@ -7581,11 +8332,24 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "*cast/Dascard/Errors/Unknown Protos/Queue length",
       "type": "row"
     },
     {
       "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -7638,8 +8402,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   }
                 ]
               },
@@ -7705,6 +8468,10 @@
           "repeatDirection": "h",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "irate(ifHCInOctets{ifName=~'$Interface',instance='$instance'}[$__rate_interval])*8",
               "format": "time_series",
@@ -7715,6 +8482,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": true,
               "expr": "-irate(ifHCOutOctets{ifName=~'$Interface',instance='$instance'}[$__rate_interval])*8",
               "hide": false,
@@ -7728,12 +8499,21 @@
           "type": "timeseries"
         }
       ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Interfaces Traffic",
       "type": "row"
     }
   ],
   "refresh": "10s",
-  "schemaVersion": 34,
+  "schemaVersion": 36,
   "style": "dark",
   "tags": [
     "prometheus",

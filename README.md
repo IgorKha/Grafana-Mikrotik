@@ -1,15 +1,17 @@
 # Grafana-Mikrotik
 
+![logo](https://repository-images.githubusercontent.com/366494855/c62052b8-17c2-47f2-a3ae-0e397a3ef074)
+
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=IgorKha.Grafana-Mikrotik)
 ![example branch parameter](https://github.com/IgorKha/Grafana-Mikrotik/actions/workflows/action.yml/badge.svg?branch=master)
-![mikrotikOS](https://img.shields.io/badge/Mikrotik_ROS-v7.3.1-blue)
-![Grafana](https://img.shields.io/badge/Grafana-v9.0.0-orange?logo=grafana)
-![Prometheus](https://img.shields.io/badge/Prometheus-v2.36.0-red?logo=prometheus)
+![mikrotikOS](https://img.shields.io/badge/Mikrotik_ROS-v7.4-blue)
+![Grafana](https://img.shields.io/badge/Grafana-v9.0.5-orange?logo=grafana)
+![Prometheus](https://img.shields.io/badge/Prometheus-v2.37.0-red?logo=prometheus)
 ![snmp_exporter](https://img.shields.io/badge/snmp__exporter-v0.20.0-red?logo=prometheus)
 
 [![Donate using Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/~1772367/donate)
 
------------
+---
 
 ## 🐳 Deploy with docker-compose
 
@@ -49,13 +51,13 @@ docker-compose up -d
 
 3.Open [localhost:3000](http://localhost:3000)
 
-*  Grafana login: `admin`
+* Grafana login: `admin`
 
-*  Password: `mikrotik`
+* Password: `mikrotik`
 
 If you want to change the credentials, then edit the ".env" file
 
------------
+---
 
 ## Manual deploy
 
@@ -82,7 +84,7 @@ If you want to change the credentials, then edit the ".env" file
 
 3.Add dashboard <https://grafana.com/grafana/dashboards/14420>
 
------------
+---
 
 ### Docker snmp_exporter
 
@@ -94,5 +96,5 @@ If you want to change the credentials, then edit the ".env" file
 sudo docker run -d -p 9116:9116 mashinkopochinko/snmp_exporter_mikrotik:latest
 ```
 
------------
+---
 ![img1](/readme/screen.png)
