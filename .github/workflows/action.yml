@@ -24,7 +24,7 @@ jobs:
         run: curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh | bash -s --
 
       - name: Test Grafana
-        run: sleep 5 && curl -GLsS --retry 5 --retry-connrefused --retry-delay 2 'http://localhost:3000/api/health'
+        run: sleep 10 && curl -GLsS --retry 5 --retry-connrefused --retry-delay 2 'http://localhost:3000/api/health'
 
       - name: Test Prometheus
         run: curl -GLsS --retry 5 --retry-delay 2 "http://localhost:9090/-/ready"
