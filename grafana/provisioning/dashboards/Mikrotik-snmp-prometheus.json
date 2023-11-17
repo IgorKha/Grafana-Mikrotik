@@ -2654,7 +2654,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "bits"
+                "value": "bytes"
               },
               {
                 "id": "thresholds",
@@ -2686,7 +2686,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "bits"
+                "value": "bytes"
               },
               {
                 "id": "thresholds",
