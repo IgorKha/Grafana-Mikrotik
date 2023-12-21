@@ -18,7 +18,9 @@
 ### Deploy with bash script
 
 ```console
-curl -fsSL https://raw.githubusercontent.com/IgorKha/Grafana-Mikrotik/master/run.sh | bash -s -- --config
+git clone https://github.com/IgorKha/Grafana-Mikrotik.git
+cd ./Grafana-Mikrotik
+bash ./run.sh --config
 ```
 
 ```console
@@ -86,7 +88,7 @@ If you want to change the credentials, then edit the ".env" file
 
 ---
 
-### Docker snmp_exporter
+### Docker snmp_exporter (deprecated)
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/mashinkopochinko/snmp_exporter_mikrotik?logo=docker)](https://hub.docker.com/repository/docker/mashinkopochinko/snmp_exporter_mikrotik)
 
